@@ -7,9 +7,7 @@ interface TimerInterface {
     onPressResend?: () => void;
 }
 
-const Timer: FC<TimerInterface> = ({ onPressResend }) => {
-    console.log('⏱ Timer component re-rendered');
-    
+const Timer: FC<TimerInterface> = ({ onPressResend }) => {    
     const [time, setTime] = useState(60);
     const intervalRef = useRef<NodeJS.Timeout | null>(null);
 

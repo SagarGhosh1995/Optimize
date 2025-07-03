@@ -1,4 +1,4 @@
-import React, { JSX, useCallback } from 'react';
+import React, { JSX, useCallback, useState } from 'react';
 import {
   View,
   Text,
@@ -14,8 +14,9 @@ import {
 import { colors } from '../constants/colors';
 import { fonts } from '../constants/fonts';
 
-interface CustomIconInputProps extends TextInputProps {
+interface CustomIconInputProps extends Omit<TextInputProps, 'onChangeText'> {
   label?: string;
+  intialValue?: any,
   leftIcon?: ImageSourcePropType | null;
   rightIcon?: JSX.Element | null;
   showRightButton?: boolean;
@@ -28,6 +29,7 @@ interface CustomIconInputProps extends TextInputProps {
   onPressRightButton?: () => void;
   onPressInlineUpdate?: () => void;
   onPressUpperlineUpdate?: () => void;
+  onTypingComplete?: (text: string) => void;
 }
 
 const CustomIconInput: React.FC<CustomIconInputProps> = ({
@@ -44,14 +46,18 @@ const CustomIconInput: React.FC<CustomIconInputProps> = ({
   onPressRightButton,
   onPressInlineUpdate,
   onPressUpperlineUpdate,
-  onChangeText,
+  onTypingComplete,
+  intialValue,
   ...rest
 }) => {
- 
-  const handleTextChange = useCallback(
-    (text: string) => onChangeText?.(text),
-    [onChangeText]
-  );
+  
+  const [text, setText] = useState(intialValue);
+  const isControlled = rest?.value !== undefined;
+  const inputValue = isControlled ? rest?.value : text;
+
+  const handleEndEditing = useCallback(() => {
+    onTypingComplete?.(inputValue  ?? '');
+  }, [inputValue, onTypingComplete]);
 
   return (
     <View style={[styles.container, containerStyle]}>
@@ -75,9 +81,11 @@ const CustomIconInput: React.FC<CustomIconInputProps> = ({
 
         <TextInput
           {...rest}
+          value={inputValue}
           style={[styles.input, inputStyle]}
           placeholderTextColor={colors.grey2}
-          onChangeText={handleTextChange}
+          onChangeText={setText}
+          onEndEditing={handleEndEditing}
         />
 
         {rightIcon && (
@@ -110,14 +118,16 @@ const CustomIconInput: React.FC<CustomIconInputProps> = ({
 
 function areEqual(prevProps: any, nextProps: any) {
   return (
-  prevProps.value === nextProps.value &&
+    prevProps.value === nextProps.value &&
     prevProps.label === nextProps.label &&
     prevProps.placeholder === nextProps.placeholder &&
     prevProps.editable === nextProps.editable &&
     prevProps.leftIcon === nextProps.leftIcon &&
     prevProps.rightIcon === nextProps.rightIcon &&
     prevProps.showRightButton === nextProps.showRightButton &&
-    prevProps.rightButtonLabel === nextProps.rightButtonLabel
+    prevProps.rightButtonLabel === nextProps.rightButtonLabel &&
+    prevProps.inputStyle === nextProps.inputStyle &&
+    prevProps.inputContainerStyle === nextProps.inputContainerStyle
   );
 }
 
@@ -142,7 +152,7 @@ const styles = StyleSheet.create({
     color: colors.black,
     textDecorationLine: 'underline',
   },
-  inputContainer: {
+  inputContainer: {    
     flexDirection: 'row',
     alignItems: 'center',
     borderColor: colors.grey22,
@@ -153,7 +163,7 @@ const styles = StyleSheet.create({
   },
   input: {
     flex: 1,
-    height: 40,
+    height: 50,
     paddingHorizontal: 10,
     fontSize: 13,
     fontFamily: fonts.regular,
@@ -161,7 +171,7 @@ const styles = StyleSheet.create({
   },
   iconWrapper: {
     paddingHorizontal: 10,
-    backgroundColor: colors.grey12,
+    // backgroundColor: colors.grey12,
     justifyContent: 'center',
     alignItems: 'center',
   },

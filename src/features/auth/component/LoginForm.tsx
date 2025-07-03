@@ -10,6 +10,9 @@ import CustomButton from '../../../shared/component/CustomButton';
 import SocialLogin from './SocialLogin';
 import { sendUserOtp, verifyUserOtp } from '../authApi';
 import { showToast } from '../../../shared/utils/toast';
+import { setAuthData } from '../authSlice';
+import { useAppDispatch } from '../../../globalRedux/useTypedHooks';
+import { useSetStoreId } from '../../../globalContext/hooks';
 
 
 interface LoginFormInterface {
@@ -21,6 +24,9 @@ const LoginForm: FC<LoginFormInterface> = ({
     containerStyle,
     onSamePageLogin
 }) => {
+    const dispatch = useAppDispatch()
+    const setStoreId = useSetStoreId();
+
     const [activeOption, setActiveOption] = useState(1);
     const [contact, setContact] = useState('');
     const [otpSend, setOtpSend] = useState(false);
@@ -37,7 +43,7 @@ const LoginForm: FC<LoginFormInterface> = ({
     const handlePhoneChange = useCallback((data: any) => {
         setCode(data?.code || '');
         setContact(data?.number || '');
-    }, []);
+    }, [code, contact]);
 
     const handleEmailChange = useCallback((e: string) => {
         setContact(e)
@@ -52,16 +58,16 @@ const LoginForm: FC<LoginFormInterface> = ({
     }, [])
 
     const onResendOtp = useCallback(() => {
-
+        sendOtp()
     }, [])
 
-    const handleSubmit = () => {
+    const handleSubmit = useCallback(() => {
         if (otpSend) {
             verifyOtp()
         } else {
             sendOtp()
         }
-    }
+    }, [code, contact, otpSend, otp])
 
     const sendOtp = () => {
         Keyboard.dismiss()
@@ -91,9 +97,8 @@ const LoginForm: FC<LoginFormInterface> = ({
         }
         setLoading(true)
         verifyUserOtp(param).then(res => {
-            console.log(res);            
             if (res?.success) {
-
+                dispatch(setAuthData(res.data))
             } else {
                 showToast('error', res?.message)
             }
@@ -119,10 +124,10 @@ const LoginForm: FC<LoginFormInterface> = ({
                 ) : (
                     <CustomIconInput
                         placeholder="Enter Email Id"
-                        value={contact}
+                        intialValue={contact}
                         keyboardType="email-address"
-                        onChangeText={handleEmailChange}
-                        inputContainerStyle={styles.emailInputContainer}
+                        onTypingComplete={handleEmailChange}
+                        inputContainerStyle={styles.emailInputContainer}                        
                         rightIcon={
                             otpSend ? (
                                 <Image source={icons.penciledit} style={styles.iconStyle} />

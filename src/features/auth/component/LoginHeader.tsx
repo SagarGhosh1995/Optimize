@@ -5,7 +5,7 @@ import { images } from '../../../shared/constants/images';
 import { colors } from '../../../shared/constants/colors';
 import { fonts } from '../../../shared/constants/fonts';
 
-const Header = () => {
+const LoginHeader = () => {
     const { top } = useSafeAreaInsets();
 
     return (
@@ -30,7 +30,7 @@ const Header = () => {
     );
 };
 
-export default Header;
+export default LoginHeader;
 
 const styles = StyleSheet.create({
     container: {

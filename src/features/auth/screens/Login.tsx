@@ -1,7 +1,7 @@
 import React from 'react';
 import { View, StyleSheet, ImageBackground, Platform } from 'react-native';
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view';
-import Header from '../component/Header';
+import LoginHeader from '../component/LoginHeader';
 import LoginForm from '../component/LoginForm';
 import { images } from '../../../shared/constants/images';
 import { isIOS } from '../../../shared/constants/dimensions';
@@ -17,9 +17,8 @@ const Login = () => {
         enableAutomaticScroll
         enableOnAndroid
         contentContainerStyle={styles.scrollContent}
-        keyboardShouldPersistTaps="handled"
       >
-        <Header />
+        <LoginHeader />
         <LoginForm containerStyle={styles.formContainer} />
       </KeyboardAwareScrollView>
     </ImageBackground>

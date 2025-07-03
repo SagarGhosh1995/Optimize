@@ -1,8 +1,10 @@
 import { configureStore } from "@reduxjs/toolkit";
 import accountReducer from '../../../features/account/accountSlice'
+import authReducer from '../../../features/auth/authSlice'
 
 export const genxStore = configureStore({
   reducer: {
+    auth: authReducer,
     user: accountReducer,
     // other reducers like cart if needed
   },
