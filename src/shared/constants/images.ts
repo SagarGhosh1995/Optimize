@@ -4,4 +4,5 @@ export const images = {
       google: require('../../assets/images/google.png'),
       apple: require('../../assets/images/apple.png'),
       hometablogo: require('../../assets/images/home-tab-logo.png'),
+      divider: require('../../assets/images/divider.png'),
 }

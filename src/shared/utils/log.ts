@@ -1,6 +1,8 @@
 
 export const log = (title='', data?: any) => {
-    console.log(title, data)
+    if (__DEV__) {
+        console.log(title, data ?? '')
+    }
 }
 
 export const warn = (title='', data?: any) => {
