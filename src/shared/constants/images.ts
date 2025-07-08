@@ -5,4 +5,8 @@ export const images = {
       apple: require('../../assets/images/apple.png'),
       hometablogo: require('../../assets/images/home-tab-logo.png'),
       divider: require('../../assets/images/divider.png'),
+      productcardcarticon: require('../../assets/images/product-card-carticon.png'),
+      productcardbellicon: require('../../assets/images/product-card-bellicon.png'),
+      noproduct: require('../../assets/images/no-products.png'),
+      emptywishlist: require('../../assets/images/empty-wishlist.png'),
 }

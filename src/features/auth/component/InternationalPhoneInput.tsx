@@ -67,7 +67,7 @@ const InternationalPhoneInput: FC<InternationalPhoneInputInterface> = ({
 
   return (
     <View style={[styles.container, containerStyle]}>
-      {label && <Text style={styles.label}>{label}</Text>}
+      {label && <Text style={styles.label} allowFontScaling={false}>{label}</Text>}
 
       <View style={[inputContainerStyle]}>
         <PhoneInput

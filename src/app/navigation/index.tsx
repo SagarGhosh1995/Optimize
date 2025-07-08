@@ -11,7 +11,8 @@ import PreBookNavigator from './prebookStoreNavigation/PreBookNavigator';
 import { NavigationContainer } from '@react-navigation/native';
 import { useStoreId, useTheme } from '../../globalContext/hooks';
 import { Provider } from 'react-redux';
-import { genxStore } from '../../stores/genx/redux/store';
+import { genxPersistor, genxStore } from '../../stores/genx/redux/store';
+import { PersistGate } from 'redux-persist/integration/react';
 
 const Navigation = () => {
   const storeId: string = useStoreId()
@@ -37,9 +38,11 @@ const Navigation = () => {
 
   return (
     <Provider store={getReduxStore()}>
+      <PersistGate loading={null} persistor={genxPersistor}>
       <NavigationContainer>
         {getStoreNavigator()}
       </NavigationContainer>
+      </PersistGate>
     </Provider>
   )
 };

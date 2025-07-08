@@ -8,8 +8,6 @@ export interface ApiError {
 }
 
 export const formatError = (error: any): ApiError => {
-  // console.log('===> ',error.response);
-
   if (error.response) {
     // Server returned a response with an error status
     return {

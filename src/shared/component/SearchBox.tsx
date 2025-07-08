@@ -29,7 +29,7 @@ const SearchBox:FC<SearchBoxInterface> = ({
                 :
                ( <View style={styles.box}>
                     <Image source={icons.search} style={styles.icon} />
-                    <Text style={styles.label}>{PLACEHOLDER }</Text>
+                    <Text allowFontScaling={false} style={styles.label}>{PLACEHOLDER }</Text>
                 </View>)
             }
         </TouchableOpacity>

@@ -13,6 +13,7 @@ import { showToast } from '../../../shared/utils/toast';
 import { setAuthData } from '../authSlice';
 import { useAppDispatch } from '../../../globalRedux/useTypedHooks';
 import { useSetStoreId } from '../../../globalContext/hooks';
+import { warn } from '../../../shared/utils/log';
 
 
 interface LoginFormInterface {
@@ -82,9 +83,10 @@ const LoginForm: FC<LoginFormInterface> = ({
                 setOtpSend(true)
             } else {
                 showToast('error', res?.message)
+                warn("sendUserOtp => ", res);
             }
         }).catch(err => {
-            console.log("sendUserOtp => ", err);
+            warn("sendUserOtp => ", err);
         }).finally(() => {
             setLoading(false)
         })
@@ -103,7 +105,7 @@ const LoginForm: FC<LoginFormInterface> = ({
                 showToast('error', res?.message)
             }
         }).catch(err => {
-            console.log("verifyOtp => ", err);
+            warn("verifyOtp => ", err);
         }).finally(() => {
             setLoading(false)
         })
@@ -117,6 +119,7 @@ const LoginForm: FC<LoginFormInterface> = ({
             <View style={styles.formInputContainer}>
                 {activeOption === 1 ? (
                     <InternationalPhoneInput
+                        initialValue={__DEV__ ? '9163029201' : ''}
                         disabled={otpSend}
                         onPressEdit={handleEditPress}
                         onChangePhoneNumber={handlePhoneChange}

@@ -15,11 +15,7 @@ const HomeCms: FC<HomeCmsInterface> = ({
         <ComponentRenderer data={item} />
     );
 
-    useEffect(() => {
-        log('HomeCms component rendered')
-    }, [])
-
-    if (data?.length === 0) return null
+    if (!data?.length) return null
     return (
         <FlatList
             data={data}

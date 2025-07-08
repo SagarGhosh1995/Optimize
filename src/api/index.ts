@@ -1,5 +1,6 @@
 import axios from 'axios';
 import config from './config';
+import { genxStore } from '../stores/genx/redux/store';
 
 const api = axios.create({
     baseURL: config.apibaseurl,
@@ -7,7 +8,7 @@ const api = axios.create({
 });
 
 api.interceptors.request.use((config) => {
-    const token = null;
+    const token = genxStore.getState()?.auth?.authdata?.access_token
     if (token) config.headers.Authorization = `Bearer ${token}`;
     return config;
 },

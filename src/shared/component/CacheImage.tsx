@@ -1,5 +1,7 @@
-import React, { FC } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import FastImage, { FastImageProps, ImageStyle } from '@d11/react-native-fast-image';
+import { StyleProp, StyleSheet } from 'react-native';
+import { useImageAspectRatio } from '../hooks/useImageAspectRatio';
 
 interface FastCachedImageProps extends Partial<FastImageProps> {
     uri: string;
@@ -16,9 +18,6 @@ const FastCachedImage: FC<FastCachedImageProps> = ({
     ...rest
 }) => {
 
-    // console.log(uri);
-
-
     if (!uri) return fallbackComponent || null;
 
     return (
@@ -29,7 +28,7 @@ const FastCachedImage: FC<FastCachedImageProps> = ({
                 cache: FastImage.cacheControl.immutable, // Ensures aggressive caching
                 priority: FastImage.priority.normal,
             }}
-            style={style}
+            style={[StyleSheet.absoluteFill, style]}
             resizeMode={FastImage.resizeMode[resizeMode]}
         />
     );

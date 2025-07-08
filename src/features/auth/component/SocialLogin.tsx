@@ -18,7 +18,7 @@ const SocialLogin: FC<SocialLoginInterface> = ({
 }) => {
   return (
     <View style={[styles.container, containerStyle]}>
-      {heading && <Text style={styles.heading}>{heading}</Text>}
+      {heading && <Text allowFontScaling={false} style={styles.heading}>{heading}</Text>}
 
       <TouchableOpacity
         style={styles.button}
@@ -27,7 +27,7 @@ const SocialLogin: FC<SocialLoginInterface> = ({
         accessibilityLabel="Login with Google"
       >
         <Image source={images.google} style={styles.icon} resizeMode="cover" />
-        <Text style={styles.label}>Sign in with Google</Text>
+        <Text allowFontScaling={false} style={styles.label}>Sign in with Google</Text>
       </TouchableOpacity>
 
       {isIOS && (
@@ -38,7 +38,7 @@ const SocialLogin: FC<SocialLoginInterface> = ({
           accessibilityLabel="Login with Apple"
         >
           <Image source={images.apple} style={styles.iconApple} resizeMode="cover" />
-          <Text style={styles.label}>Sign in with Apple</Text>
+          <Text allowFontScaling={false} style={styles.label}>Sign in with Apple</Text>
         </TouchableOpacity>
       )}
     </View>

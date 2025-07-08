@@ -23,10 +23,10 @@ const LoginOptions:FC<LoginOptionsInteface> = ({
         <View style={styles.container}>
             <View style={styles.menuContainer}>
                 <TouchableOpacity style={[styles.menu, activeIndex === 1 && styles.activeMenu]} onPress={() => onPressMenu(1)}>
-                    <Text style={[styles.menuTitle,activeIndex === 1 && {fontFamily: fonts.bold, color: colors.black}]}>Mobile</Text>
+                    <Text allowFontScaling={false} style={[styles.menuTitle,activeIndex === 1 && {fontFamily: fonts.bold, color: colors.black}]}>Mobile</Text>
                 </TouchableOpacity>
                 <TouchableOpacity  style={[styles.menu, activeIndex === 2 && styles.activeMenu]} onPress={() => onPressMenu(2)}>
-                    <Text style={[styles.menuTitle,activeIndex === 2 && {fontFamily: fonts.bold, color: colors.black}]}>Email</Text>
+                    <Text allowFontScaling={false} style={[styles.menuTitle,activeIndex === 2 && {fontFamily: fonts.bold, color: colors.black}]}>Email</Text>
                 </TouchableOpacity>
             </View>
         </View>

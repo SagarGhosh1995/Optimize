@@ -16,13 +16,13 @@ const LoginHeader = () => {
                     <Image source={images.logo} style={styles.logo} resizeMode="contain" />
                 </View>
                 <TouchableOpacity style={styles.skipButton}>
-                    <Text style={styles.skipText}>Skip</Text>
+                    <Text style={styles.skipText} allowFontScaling={false}>Skip</Text>
                 </TouchableOpacity>
             </View>
 
             <View style={styles.textContainer}>
-                <Text style={styles.heading}>Go ahead and set up your account</Text>
-                <Text style={styles.subHeading}>
+                <Text allowFontScaling={false} style={styles.heading}>Go ahead and set up your account</Text>
+                <Text allowFontScaling={false} style={styles.subHeading}>
                     Sign in-up to enjoy the best shopping experience
                 </Text>
             </View>

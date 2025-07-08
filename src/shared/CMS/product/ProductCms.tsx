@@ -10,7 +10,7 @@ const ProductCms: FC<ProductCmsInterface> = ({
 }) => {
 
 
-    if (data?.length === 0) return null
+    if (!data?.length) return null
     return (
         <View>
             <Text>ProductCms</Text>

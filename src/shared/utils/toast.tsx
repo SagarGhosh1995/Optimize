@@ -53,11 +53,11 @@ export const toastConfig: ToastConfig = {
         resizeMode="contain"
       />
       <View style={styles.warningTextContainer}>
-        <Text style={styles.warningText1} numberOfLines={1}>
+        <Text allowFontScaling={false} style={styles.warningText1} numberOfLines={1}>
           {text1}
         </Text>
         {text2 ? (
-          <Text style={styles.warningText2} numberOfLines={1}>
+          <Text allowFontScaling={false} style={styles.warningText2} numberOfLines={1}>
             {text2}
           </Text>
         ) : null}

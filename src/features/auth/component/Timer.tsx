@@ -48,15 +48,15 @@ const Timer: FC<TimerInterface> = ({ onPressResend }) => {
         <View style={styles.container}>
             {time === 0 ? (
                 <TouchableOpacity style={styles.btn} onPress={handleResend}>
-                    <Text style={styles.text}>
+                    <Text allowFontScaling={false} style={styles.text}>
                         Didn’t Receive Code?{' '}
-                        <Text style={styles.resendText}>Resend OTP</Text>
+                        <Text allowFontScaling={false} style={styles.resendText}>Resend OTP</Text>
                     </Text>
                 </TouchableOpacity>
             ) : (
                 <View style={styles.timerRow}>
-                    <Text style={styles.text}>Resend OTP in </Text>
-                    <Text style={[styles.text]}><Text style={{ fontFamily: fonts.bold }}>00 : {formatTime(time)}</Text> Seconds</Text>
+                    <Text allowFontScaling={false} style={styles.text}>Resend OTP in </Text>
+                    <Text allowFontScaling={false} style={[styles.text]}><Text allowFontScaling={false} style={{ fontFamily: fonts.bold }}>00 : {formatTime(time)}</Text> Seconds</Text>
                 </View>
             )}
         </View>

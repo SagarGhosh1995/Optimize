@@ -1,12 +1,125 @@
-import { View, Text } from 'react-native'
-import React from 'react'
+import { View, StyleSheet, FlatList, ActivityIndicator } from 'react-native'
+import React, { useCallback, useEffect, useState } from 'react'
+import { colors } from '../../../../shared/constants/colors'
+import AppHeader from '../../../../shared/component/AppHeader'
+import ProductCard from '../../component/ProductCard'
+import { getWishlist } from './wishlistApi'
+import { warn } from '../../../../shared/utils/log'
+import EmptyContent from '../../../../shared/component/EmptyContent'
+import { showToast } from '../../../../shared/utils/toast'
 
 const Wishlist = () => {
+
+  const [loading, setLoading] = useState(false)
+  const [refreshing, setRefreshing] = useState(false);
+  const [products, setProducts] = useState<Array<any>>([])
+  const [totalData, setTotalData] = useState(0)
+  const [page, setPage] = useState(1)
+  const [hasMore, setHasMore] = useState(true);
+
+  useEffect(() => {
+    getData()
+  }, [page])
+
+  const getData = () => {
+    let _page = page
+    if(!hasMore) return
+    if (!refreshing) {
+      setLoading(true);
+    }
+    getWishlist(12)
+      .then((res) => {
+        if (res?.success) {
+          const data = res?.data?.wishlist_data ?? []
+          const total = res?.data?.total_data ?? 0
+          if(!refreshing){
+            setProducts(prev => [...prev, ...data])
+          }else{
+            setProducts(data)
+          }
+          setTotalData(total)
+          setHasMore(data.length > 0)
+          console.log('data => ',data.length);
+          
+        }
+      })
+      .catch((error) => {
+        warn(error);
+      }).finally(() => {
+        setLoading(false)
+        setRefreshing(false)
+      })
+  };
+
+
+
+  const renderItem = useCallback(({ item, index }: any) => {
+    return (
+      <ProductCard
+        data={item}
+        cardDividingRatio={2.3}
+      />
+    )
+  }, [])
+
+  const separator = useCallback(() => {
+    return (
+      <View style={styles.separator} />
+    )
+  }, [])
+
+  const emptycontent = useCallback(() => {
+    if (loading || refreshing) return null;
+    return <EmptyContent type='wishlist' />;
+  }, [loading, refreshing]);
+
+  const footerComponent = useCallback(() => {
+    if (loading)
+      return <ActivityIndicator size={'small'} color={colors.black} />
+    return null
+  }, [loading])
+
   return (
-    <View>
-      <Text>Wishlist</Text>
+    <View style={styles.container}>
+      <AppHeader showBack showNotification showCart title="Wishlist" subTitle={totalData + ' Items'} />
+      <FlatList
+        data={products}
+        keyExtractor={(item: any, index) => item?.product_id + index + ""}
+        renderItem={renderItem}
+        numColumns={2}
+        contentContainerStyle={styles.contentContainerStyle}
+        columnWrapperStyle={styles.columnWrapperStyle}
+        ItemSeparatorComponent={separator}
+        ListEmptyComponent={emptycontent}
+        ListFooterComponent={footerComponent}
+        onEndReached={() => setPage(p => p + 1)}
+        onEndReachedThreshold={0.5}
+        refreshing={refreshing}
+        onRefresh={() => {
+          setRefreshing(true)
+          setPage(1)
+        }}
+      />
     </View>
   )
 }
 
 export default Wishlist
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    backgroundColor: colors.bgcolor
+  },
+  contentContainerStyle: {
+    flexGrow: 1,
+    paddingTop: 20,
+    paddingBottom: 30
+  },
+  columnWrapperStyle: {
+    justifyContent: 'space-evenly'
+  },
+  separator: {
+    marginTop: 10
+  }
+})

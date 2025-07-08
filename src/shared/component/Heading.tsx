@@ -28,11 +28,11 @@ const Heading: FC<HeadingInterface> = ({
         <View style={[styles.container, constainerStyle]}>
             {
                 heading &&
-                <Text style={[swap ? styles.heading2 : styles.heading1, headingStyle]}>{heading}</Text>
+                <Text allowFontScaling={false} style={[swap ? styles.heading2 : styles.heading1, headingStyle]} numberOfLines={2}>{heading}</Text>
             }
             {
                 subHeading &&
-                <Text style={[swap ? styles.heading1 : styles.heading2, subHeadingStyle]}>{subHeading}</Text>
+                <Text allowFontScaling={false} style={[swap ? styles.heading1 : styles.heading2, subHeadingStyle]} numberOfLines={2}>{subHeading}</Text>
             }
             <Image source={images.divider} style={[styles.divider]} tintColor={tintColor} />
         </View>
@@ -43,24 +43,25 @@ export default memo(Heading)
 
 const styles = StyleSheet.create({
     container: {
-
     },
     heading1: {
         fontFamily: fonts.regular,
-        fontSize: 12,
+        fontSize: 11,
         color: colors.black,
-        textAlign: 'center',
         lineHeight: isIOS ? 20 : 16,
-        maxWidth: '95%'
+        maxWidth: '95%',
+        textTransform: 'uppercase',
+        alignSelf: 'center',
+        textAlign: 'center'
     },
     heading2: {
         fontFamily: fonts.bold,
-        fontSize: 16,
+        fontSize: 15,
         lineHeight: isIOS ? 23 : 16,
         color: colors.black,
         textAlign: 'center',
         marginTop: 5,
-        textTransform: 'uppercase'
+        textTransform: 'uppercase',        
     },
     divider: {
         width: 150,

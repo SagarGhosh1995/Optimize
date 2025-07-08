@@ -1,15 +1,15 @@
 import React from 'react'
-import CategoryTemplate1 from './CategoryTemplate1';
-import WFHTemplate1 from './WFHTemplate1';
-import HeroSection from './HeroSection';
-import BrandTemplate1 from './BrandTemplate1';
-import HomepageBanner from './HomepageBanner';
-import AwardTemplate1 from './AwardTemplate1';
-import UtilityTemplate1 from './UtilityTemplate1';
-import CountryTemplate1 from './CountryTemplate1';
+import CategoryTemplate1 from './CategoryTemplate1/CategoryTemplate1';
+import WFHTemplate1 from './WFHTemplate1/WFHTemplate1';
+import HeroSection from './HeroSection/HeroSection';
+import BrandTemplate1 from './BrandTemplate1/BrandTemplate1';
+import HomepageBanner from './HomepageBanner/HomepageBanner';
+import AwardTemplate1 from './AwardTemplate1/AwardTemplate1';
+import UtilityTemplate1 from './UtilityTemplate1/UtilityTemplate1';
+import CountryTemplate1 from './CountryTemplate1/CountryTemplate1';
 
 const ComponentRenderer = ({ data }: { data: any }) => {
-    switch (data?.component) {
+     switch (data?.component) {        
         case 'CategoryTemplate1':
             return <CategoryTemplate1 data={data} />
 

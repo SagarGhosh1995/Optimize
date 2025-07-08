@@ -1,5 +1,5 @@
 /* eslint-disable react-hooks/exhaustive-deps */
-import { StyleSheet, FlatList } from 'react-native'
+import { StyleSheet, FlatList, View } from 'react-native'
 import React, { useCallback, useEffect, useMemo, useState } from 'react'
 import { colors } from '../../../../shared/constants/colors'
 import AppHeader from '../../../../shared/component/AppHeader'
@@ -7,12 +7,13 @@ import { homePageBanner, homePageCMS, homePageRandomProduct } from './homeApi'
 import { warn } from '../../../../shared/utils/log'
 import SearchBox from '../../../../shared/component/SearchBox'
 import ParallaxSlider from '../../../../shared/component/ParallaxSlider'
-import { ScaledDimensions } from '../../../../shared/hooks/ScaledDimensions'
+import { useScaledDimensions } from '../../../../shared/hooks/useScaledDimensions'
 import CMS from '../../../../shared/CMS/CMS'
+import VerticleProducts from '../../component/VerticleProducts'
 
 const Home = () => {
 
-  const scaledSize = ScaledDimensions()
+  const scaledSize = useScaledDimensions()
   const [banner, setBanner] = useState<Array<any>>([]);
   const [cms, setCms] = useState<Array<any>>([]);
   const [products, setProducts] = useState<Array<any>>([]);
@@ -28,7 +29,7 @@ const Home = () => {
 
       if (bannerRes.status === 'fulfilled') {
         const slides = bannerRes.value?.data?.response?.[0]?.slider_images ?? [];
-        if (Array.isArray(slides) && slides.length) {
+        if (Array.isArray(slides) && !!slides.length) {
           setBanner(slides);
         } else {
           warn('Invalid banner format: NOT_AN_ARRAY');
@@ -50,7 +51,7 @@ const Home = () => {
 
       if (randomRes.status === 'fulfilled') {
         const allproducts = randomRes?.value?.data?.productList ?? []
-        if (Array.isArray(allproducts) && allproducts.length) {
+        if (Array.isArray(allproducts) && !!allproducts.length) {
           setProducts(allproducts);
         } else {
           warn('Invalid Product format: NOT_AN_ARRAY');
@@ -91,26 +92,35 @@ const Home = () => {
       case 'banner':
         return (
           <ParallaxSlider
-            autoPlay
             data={item.data}
-            bannerWidth={scaledSize.width}
           />
         );
       case 'cms':
         return <CMS data={item.data} />;
+      case 'random-product':
+        return(
+          <VerticleProducts 
+            products={products}            
+          />
+        )
+
       default:
         return null;
     }
-  }, [scaledSize.width])
+  }, [scaledSize.width, products])
 
   return (
-    <FlatList
-      data={sections}
-      keyExtractor={(item) => item.id + ''}
-      renderItem={renderSection}
-      contentContainerStyle={styles.container}
-      ListHeaderComponent={renderHeader}
-    />
+    <View style={styles.container} >
+      {
+        renderHeader()
+      }
+      <FlatList
+        data={sections}
+        keyExtractor={(item) => item.id + ''}
+        renderItem={renderSection}
+        contentContainerStyle={styles.flatlistContainer}
+      />
+    </View>
   )
 }
 
@@ -118,7 +128,11 @@ export default Home
 
 const styles = StyleSheet.create({
   container: {
-    flexGrow: 1,
+    flex: 1,
     backgroundColor: colors.bgcolor,
   },
+  flatlistContainer: {
+    flexGrow: 1,
+    paddingBottom: 50
+  }
 })

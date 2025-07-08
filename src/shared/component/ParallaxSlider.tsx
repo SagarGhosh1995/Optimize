@@ -4,12 +4,14 @@ import React, { FC, useCallback, useEffect, useState } from 'react'
 import Carousel from 'react-native-reanimated-carousel';
 import CacheImage from './CacheImage';
 import { colors } from '../constants/colors';
-import { log } from '../utils/log';
+import { useImageAspectRatio } from '../hooks/useImageAspectRatio';
+import { ResizeMode } from '@d11/react-native-fast-image';
 
 interface ParallaxSliderInterface {
     autoPlay?: boolean,
     containerStyle?: any,
-    data?: Array<any>,
+    resizeMode?: ResizeMode;
+    data?: Array<{ image?: string; mob_image_url?: string }>,
     bannerHeight?: number | undefined,
     bannerWidth?: number | undefined
 }
@@ -19,9 +21,9 @@ const ParallaxSlider: FC<ParallaxSliderInterface> = ({
     containerStyle,
     data = [],
     bannerHeight,
-    bannerWidth
+    bannerWidth,
+    resizeMode = 'cover'
 }) => {
-
 
     const [viewSize, setViewSize] = useState({ width: 10, height: 10 });
 
@@ -30,38 +32,51 @@ const ParallaxSlider: FC<ParallaxSliderInterface> = ({
         setViewSize({ width, height });
     };
 
+    const imageUri = data?.[0]?.image || data?.[0]?.mob_image_url;
+    const aspectRatio = useImageAspectRatio(imageUri);
+    const isTooTall = aspectRatio > 1.2;
+    const adjustedRatio = isTooTall ? 9 / 16 : aspectRatio;
+
+    const actualWidth = bannerWidth ?? viewSize.width;
+    const maxBannerHeight = 300;
+
+    const actualHeight =
+        bannerHeight ?? Math.min(actualWidth * adjustedRatio, maxBannerHeight);
+
+    const isReady = actualWidth > 10 && actualHeight > 10;
+
     const renderItem = useCallback(({ item }: any) => (
-        <View style={styles.card}>
+        <View style={[styles.card]}>
             <CacheImage
-                uri={item?.image}
+                uri={item?.image ?? item?.mob_image_url}
                 style={[styles.image]}
-                resizeMode='cover'
+                resizeMode={resizeMode}
             />
         </View>
-    ), []);
+    ), [resizeMode]);
 
-    useEffect(() => {
-        log('ParallaxSlider rendered');
-    }, []);
 
-    if (data.length === 0) { return null }
+    if (!data?.length) { return null }
     return (
         <View onLayout={handleLayout} style={[styles.container, containerStyle]}>
-            <Carousel
-                autoPlay={autoPlay}
-                width={bannerWidth ?? viewSize.width}
-                height={bannerWidth ? bannerWidth * 9 / 16 : viewSize.width * 9 / 16}
-                data={data}
-                scrollAnimationDuration={3000}
-                renderItem={renderItem}
-                pagingEnabled={true}
-                snapEnabled={true}
-                mode="parallax"
-                modeConfig={{
-                    parallaxScrollingScale: 0.93,
-                    parallaxScrollingOffset: 10,
-                }}
-            />
+            {isReady && (
+                <Carousel
+                    autoPlay={autoPlay}
+                    width={actualWidth}
+                    height={actualHeight}
+                    data={data}
+                    scrollAnimationDuration={3000}
+                    renderItem={renderItem}
+                    pagingEnabled
+                    snapEnabled
+                    mode="parallax"
+                    modeConfig={{
+                        parallaxAdjacentItemScale: 0.5,
+                        parallaxScrollingScale: 0.93,
+                        parallaxScrollingOffset: 10,
+                    }}
+                />
+            )}
         </View>
     )
 }
@@ -70,7 +85,7 @@ export default React.memo(ParallaxSlider)
 
 const styles = StyleSheet.create({
     container: {
-        // backgroundColor: 'red'
+    
     },
     card: {
         width: '100%',

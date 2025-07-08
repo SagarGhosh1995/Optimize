@@ -63,10 +63,10 @@ const CustomIconInput: React.FC<CustomIconInputProps> = ({
     <View style={[styles.container, containerStyle]}>
       {(label || showUpperLineUpdate) && (
         <View style={styles.row}>
-          {label && <Text style={styles.label}>{label}</Text>}
+          {label && <Text allowFontScaling={false} style={styles.label}>{label}</Text>}
           {showUpperLineUpdate && (
             <TouchableOpacity onPress={onPressUpperlineUpdate}>
-              <Text style={styles.textBtn}>Update</Text>
+              <Text allowFontScaling={false} style={styles.textBtn}>Update</Text>
             </TouchableOpacity>
           )}
         </View>
@@ -100,7 +100,7 @@ const CustomIconInput: React.FC<CustomIconInputProps> = ({
           <TouchableOpacity
             style={styles.buttonWrapper}
             onPress={onPressInlineUpdate}>
-            <Text style={styles.textBtn}>Update</Text>
+            <Text allowFontScaling={false} style={styles.textBtn}>Update</Text>
           </TouchableOpacity>
         )}
 
@@ -108,7 +108,7 @@ const CustomIconInput: React.FC<CustomIconInputProps> = ({
           <TouchableOpacity
             style={styles.buttonWrapper}
             onPress={onPressRightButton}>
-            <Text style={styles.textBtn}>{rightButtonLabel}</Text>
+            <Text allowFontScaling={false} style={styles.textBtn}>{rightButtonLabel}</Text>
           </TouchableOpacity>
         )}
       </View>

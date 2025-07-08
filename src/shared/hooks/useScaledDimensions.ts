@@ -1,7 +1,7 @@
 import { useWindowDimensions } from "react-native"
 
 
-export const ScaledDimensions = () => {
+export const useScaledDimensions = () => {
     const dimensions = useWindowDimensions()
 
     return dimensions

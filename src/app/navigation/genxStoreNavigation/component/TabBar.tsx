@@ -13,7 +13,6 @@ export const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) =>
     return (
         <View style={styles.container}>
             {state.routes.map((route, index) => {
-
                 const isFocused = state.index === index;
                 const { options } = descriptors[route.key];
                 let label: React.ReactNode;
@@ -41,7 +40,6 @@ export const TabBar = ({ state, descriptors, navigation }: BottomTabBarProps) =>
 
                 // Handle badge
                 const badge = options.tabBarBadge;
-
 
 
                 const onPress = () => {

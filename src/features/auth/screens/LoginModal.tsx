@@ -4,7 +4,7 @@ import React from 'react'
 const LoginModal = () => {
   return (
     <View>
-      <Text>LoginModal</Text>
+      <Text allowFontScaling={false}>LoginModal</Text>
     </View>
   )
 }

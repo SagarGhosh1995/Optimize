@@ -37,7 +37,7 @@ const CustomButton: FC<CustomButtonInterface> = ({
               {
                 icon && icon
               }
-              <Text style={[styles.heading, headingStyle]}>{label}</Text>
+              <Text allowFontScaling={false} style={[styles.heading, headingStyle]}>{label}</Text>
             </>
           )
       }

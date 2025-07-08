@@ -7,7 +7,7 @@ import {
   TouchableOpacity,
 } from 'react-native';
 import { useSafeAreaInsets } from 'react-native-safe-area-context';
-import { useRoute } from '@react-navigation/native';
+import { useNavigation, useRoute } from '@react-navigation/native';
 import { images } from '../constants/images';
 import { icons } from '../constants/icons';
 import { colors } from '../constants/colors';
@@ -35,12 +35,13 @@ const AppHeader: FC<AppHeaderProps> = ({
   const insets = useSafeAreaInsets();
   const route = useRoute();
   const screen = route.name;
+  const navigation = useNavigation()
 
   const renderMenuItem = (icon: any, badgeText?: string, style?: Object | null, onPress?: () => void) => (
     <TouchableOpacity style={[styles.iconContainer]} onPress={onPress}>
       <Image source={icon} resizeMode="contain" style={[styles.icon, style]} />
       {badgeText && <View style={styles.badge}>
-        <Text style={styles.badgeLabel} numberOfLines={1}>{badgeText}</Text>
+        <Text allowFontScaling={false} style={styles.badgeLabel} numberOfLines={1}>{badgeText}</Text>
       </View>}
     </TouchableOpacity>
   );
@@ -48,7 +49,7 @@ const AppHeader: FC<AppHeaderProps> = ({
   return (
     <View style={[styles.container, { paddingTop: insets.top, height: 50 + insets.top }]}>
       <View style={styles.leftIconsContainer} >
-        {showBack && renderMenuItem(icons.back, '', { width: '25%', height: '25%' })}
+        {showBack && renderMenuItem(icons.back, '', { width: '25%', height: '25%' }, () => navigation.goBack())}
       </View>
       <View style={styles.logoContainer} >
         {
@@ -58,6 +59,14 @@ const AppHeader: FC<AppHeaderProps> = ({
             resizeMode="contain"
             style={styles.logo}
           />
+        }
+        {
+          title &&
+          <Text allowFontScaling={false} style={styles.title}>{title}</Text>
+        }
+        {
+          subTitle &&
+          <Text allowFontScaling={false} style={styles.subTitle}>{subTitle}</Text>
         }
       </View>
       <View style={styles.rightIconsContainer} >
@@ -89,7 +98,6 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   leftIconsContainer: {
-    // position: 'absolute',
     left: 0,
     right: 0,
     bottom: 0,
@@ -141,5 +149,15 @@ const styles = StyleSheet.create({
     fontFamily: fonts.bold,
     fontSize: 9,
     color: colors.white
+  },
+  title:{
+    fontFamily: fonts.bold,
+    fontSize: 12,
+    color: colors.black
+  },
+  subTitle:{
+     fontFamily: fonts.regular,
+    fontSize: 10,
+    color: colors.black
   }
 })

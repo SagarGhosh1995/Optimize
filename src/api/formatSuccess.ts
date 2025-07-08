@@ -11,7 +11,7 @@ export const formatSuccess = (response: any): ApiSuccess => {
         return {
             message: response.data?.message || '=== data received from server ===',
             status: response.status,
-            success: response.data?.success ?? false,
+            success: response.data?.success ?? response.status === 200 ?? false,
             data: response.data,
         };
     }

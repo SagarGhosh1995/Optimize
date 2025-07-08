@@ -18,7 +18,7 @@ const CMS: FC<CMSInterface> = ({
         log('CMS component rendered')
     }, [])
 
-    if (data?.length === 0) return null
+    if (!data?.length) return null
     return type === 'home' ? (
         <HomeCms data={data} />
     ) : (

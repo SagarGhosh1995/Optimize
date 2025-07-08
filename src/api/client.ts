@@ -19,7 +19,9 @@ const post = async <T>(url: string, data = {}, config = {}) => {
     })
 };
 
-export default {
-    get,
-    post,
+const apiClient = {
+  get,
+  post,
 };
+
+export default apiClient;
