@@ -5,5 +5,6 @@ export const endpoints = {
     bannerep: "v1/app/get-shop-page-banner",
     allproducts: 'v1/products/get-all-products',
     filteredcontent: "v1/cms/get-filter-content",
-    wishlist: 'v1/wishlist/get-wishlist/b2c'
+    wishlist: 'v1/wishlist/get-wishlist/b2c',
+    profiledata: "v1/auth/b2c/me",
 }

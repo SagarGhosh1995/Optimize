@@ -1,15 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+export type UserAuthDataType = null | {
+    userId: string,
+    message?: string
+    access_token: string;
+    refresh_token: string,
+    googleLogin?: boolean;
+    isAppleLogin?: boolean;
+    registration_complete: boolean,
+}
+
 interface accountInterface {
-    authdata: null | {
-        userId: string,
-        message?: string
-        access_token: string;
-        refresh_token: string,
-        googleLogin?: boolean;
-        isAppleLogin?: boolean;
-        registration_complete: boolean,
-    };
+    authdata: UserAuthDataType;
 }
 
 const initialState: accountInterface = {

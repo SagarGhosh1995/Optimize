@@ -5,13 +5,13 @@ import Home from '../../../stores/genx/screens/home/Home';
 import Wishlist from '../../../stores/genx/screens/wishlist/Wishlist';
 import Cart from '../../../stores/genx/screens/cart/Cart';
 import Shop from '../../../stores/genx/screens/shop/Shop';
-import Profile from '../../../stores/genx/screens/profile/Profile';
 import { TabBar } from './component/TabBar';
 import { icons } from '../../../shared/constants/icons';
 import { images } from '../../../shared/constants/images';
 import { fonts } from '../../../shared/constants/fonts';
 import { colors } from '../../../shared/constants/colors';
 import { isIOS } from '../../../shared/constants/dimensions';
+import Profile from '../../../features/account/screens/profile/Profile';
 
 const Tab = createBottomTabNavigator();
 

@@ -28,7 +28,7 @@ const FastCachedImage: FC<FastCachedImageProps> = ({
                 cache: FastImage.cacheControl.immutable, // Ensures aggressive caching
                 priority: FastImage.priority.normal,
             }}
-            style={[StyleSheet.absoluteFill, style]}
+            style={[style]}
             resizeMode={FastImage.resizeMode[resizeMode]}
         />
     );

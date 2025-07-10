@@ -1,12 +1,17 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
+export type UserProfileDataType = null | {
+    name: string,
+    dob: string,
+    gender: string,
+    avatar: string,
+    email: string | null,
+    phone: number | string | null,
+    _id: string
+}
+
 interface accountInterface {
-    user: null | {
-        name: string,
-        image: string,
-        dob: string,
-        gender: string
-    }
+    user: UserProfileDataType
 }
 
 const initialState: accountInterface = {
@@ -16,8 +21,8 @@ const initialState: accountInterface = {
 const accountSlice = createSlice({
     name: 'account',
     initialState,
-    reducers: {        
-        setUser(state, action: PayloadAction<accountInterface['user']>) {
+    reducers: {
+        setUserData(state, action: PayloadAction<accountInterface['user']>) {
             state.user = action.payload;
         },
         clearAccount(state) {
@@ -26,5 +31,5 @@ const accountSlice = createSlice({
     },
 });
 
-export const { setUser, clearAccount } = accountSlice.actions;
+export const { setUserData, clearAccount } = accountSlice.actions;
 export default accountSlice.reducer;

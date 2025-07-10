@@ -27,7 +27,7 @@ const Wishlist = () => {
     if (!refreshing) {
       setLoading(true);
     }
-    getWishlist(12)
+    getWishlist(page)
       .then((res) => {
         if (res?.success) {
           const data = res?.data?.wishlist_data ?? []
@@ -114,7 +114,7 @@ const styles = StyleSheet.create({
   contentContainerStyle: {
     flexGrow: 1,
     paddingTop: 20,
-    paddingBottom: 30
+    paddingBottom: 50
   },
   columnWrapperStyle: {
     justifyContent: 'space-evenly'

@@ -22,7 +22,7 @@ const HorizontalProductRow: FC<HorizontalProductRowInterface> = ({
 
 
     useEffect(() => {
-        console.log('HorizontalProductRow rendered');
+        // console.log('HorizontalProductRow rendered');
     }, [])
 
     const renderItem = useCallback(({ item, index }: any) => {
@@ -67,7 +67,9 @@ const HorizontalProductRow: FC<HorizontalProductRowInterface> = ({
             contentContainerStyle={styles.container}
             style={styles.listStyle}
             ItemSeparatorComponent={separator}
-            initialNumToRender={20}
+            initialNumToRender={2}
+            maxToRenderPerBatch={4}
+            windowSize={4}
             showsHorizontalScrollIndicator={false}
             getItemLayout={(data, index) => ({
                 length: ITEM_WIDTH,
@@ -89,7 +91,7 @@ const styles = StyleSheet.create({
     separator: {
         marginRight: 10
     },
-    noProductContainer:{
+    noProductContainer: {
         backgroundColor: colors.grey22,
         borderRadius: 12,
         marginTop: 15

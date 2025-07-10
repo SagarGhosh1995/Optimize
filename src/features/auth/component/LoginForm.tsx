@@ -14,6 +14,7 @@ import { setAuthData } from '../authSlice';
 import { useAppDispatch } from '../../../globalRedux/useTypedHooks';
 import { useSetStoreId } from '../../../globalContext/hooks';
 import { warn } from '../../../shared/utils/log';
+import { onLoginSyncUserData } from '../../account/userUtils';
 
 
 interface LoginFormInterface {
@@ -100,7 +101,8 @@ const LoginForm: FC<LoginFormInterface> = ({
         setLoading(true)
         verifyUserOtp(param).then(res => {
             if (res?.success) {
-                dispatch(setAuthData(res.data))
+                dispatch(setAuthData({ ...res.data, isAppleLogin: false, isgooglelogin: false }))
+                onLoginSyncUserData()
             } else {
                 showToast('error', res?.message)
             }
@@ -130,7 +132,7 @@ const LoginForm: FC<LoginFormInterface> = ({
                         intialValue={contact}
                         keyboardType="email-address"
                         onTypingComplete={handleEmailChange}
-                        inputContainerStyle={styles.emailInputContainer}                        
+                        inputContainerStyle={styles.emailInputContainer}
                         rightIcon={
                             otpSend ? (
                                 <Image source={icons.penciledit} style={styles.iconStyle} />

@@ -6,24 +6,28 @@ import TabNavigator from './TabNavigator';
 import Login from '../../../features/auth/screens/Login';
 import { genxStore } from '../../../stores/genx/redux/store';
 import { useAppSelector } from '../../../globalRedux/useTypedHooks';
+import useAuthenticated from '../../../shared/hooks/useAuthenticated';
+import Logout from '../../../features/auth/screens/Logout';
 
-const Stack = createNativeStackNavigator() 
+const Stack = createNativeStackNavigator()
 
 const GenxNavigator = () => {
-  const auth = useAppSelector((state) => state.auth.authdata);
-  const isAuthenticated = !!auth?.access_token;
-  console.log('auth  ===> ',auth);
-  
+  const isAuthenticated = useAuthenticated();
+
+
   return (
-      <Stack.Navigator 
+    <Stack.Navigator
       screenOptions={{ headerShown: false }}
-      >
-        {!isAuthenticated ? (
+    >
+      {!isAuthenticated ? (
         <Stack.Screen name="login" component={Login} />
       ) : (
-        <Stack.Screen name="genxtabs" component={TabNavigator} />
+        <>
+          <Stack.Screen name="genxtabs" component={TabNavigator} />
+          <Stack.Screen name='logout' component={Logout} />
+        </>
       )}
-      </Stack.Navigator>
+    </Stack.Navigator>
   )
 }
 

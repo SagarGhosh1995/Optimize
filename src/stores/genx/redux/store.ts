@@ -15,6 +15,7 @@ const persistConfig = {
   key: 'root',
   storage: AsyncStorage,
   whitelist: ['auth', 'user'], // persist only these slices
+  blacklist: ['navigation']
 };
 
 // 3. Create persisted reducer
