@@ -42,7 +42,7 @@ const InternationalPhoneInput: FC<InternationalPhoneInputInterface> = ({
   const [countryCode, setCountryCode] = useState('+91');
 
   const isControlled = rest?.value !== undefined;
- 
+
   useEffect(() => {
     if (!isControlled) {
       setText(initialValue ?? '');

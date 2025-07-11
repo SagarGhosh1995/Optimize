@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React, { useState, useCallback, FC } from 'react';
 import { View, StyleSheet, Image, Keyboard } from 'react-native';
 import { colors } from '../../../shared/constants/colors';

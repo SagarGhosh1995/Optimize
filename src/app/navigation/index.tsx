@@ -9,20 +9,21 @@ import React, { useEffect, useRef, useState } from 'react';
 import GenxNavigator from './genxStoreNavigation/GenxNavigator';
 import PreBookNavigator from './prebookStoreNavigation/PreBookNavigator';
 import { NavigationContainer } from '@react-navigation/native';
-import { useStoreId, useTheme } from '../../globalContext/hooks';
+import { useStoreId } from '../../globalContext/hooks';
 import { Provider } from 'react-redux';
-import { genxPersistor, genxStore } from '../../stores/genx/redux/store';
+import { genxStore } from '../../stores/genx/redux/store';
 import { PersistGate } from 'redux-persist/integration/react';
-import Splash from '../../splash';
+import Splash from '../../features/splash';
 import { navigationRef } from './NavigationHelper';
+import { useReduxPersistorStore } from './hooks';
 
 const Navigation = () => {
   const timerRef = useRef<NodeJS.Timeout | null>(null);
   const [time, setTime] = useState(0)
   const storeId: string = useStoreId()
-  const { theme } = useTheme()
-  // console.log('context storeId => ',storeId);
-  // console.log('theme ',theme);
+  const reduxPersistorStore = useReduxPersistorStore()
+  // const { theme } = useTheme()
+
 
   useEffect(() => {
     startTimer();
@@ -68,9 +69,10 @@ const Navigation = () => {
       default: return genxStore;
     }
   }
+
   return (
     <Provider store={getReduxStore()}>
-      <PersistGate loading={null} persistor={genxPersistor}>
+      <PersistGate loading={null} persistor={reduxPersistorStore}>
         {
           (time !== 3) ?
             <Splash />

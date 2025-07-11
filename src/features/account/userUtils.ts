@@ -1,6 +1,4 @@
-import { useAppDispatch } from "../../globalRedux/useTypedHooks";
-import { genxStore } from "../../stores/genx/redux/store";
-import { setAuthData, UserAuthDataType } from "../auth/authSlice";
+import { getAllWishlistIds } from "../../stores/genx/screens/wishlist/wishlistApi";
 import { userProfileDetails } from "./accountApi";
 
 
@@ -12,4 +10,5 @@ export const onLoginSyncUserData = () => {
 
 
     //wishlist count
+    getAllWishlistIds()
 }

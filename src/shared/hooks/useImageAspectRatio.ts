@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { useState, useEffect } from 'react';
 import { Image, ImageResolvedAssetSource } from 'react-native';
 import { warn } from '../utils/log';

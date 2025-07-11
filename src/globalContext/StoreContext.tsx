@@ -1,7 +1,7 @@
 import { createContext, ReactNode, useState } from "react";
 
 // Define types
-type StoreIds = 'genx' | 'prebook';
+export type StoreIds = 'genx' | 'prebook';
 
 interface ContextType {
     storeId: StoreIds;

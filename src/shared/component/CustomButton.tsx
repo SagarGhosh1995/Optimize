@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native'
+import { Text, StyleSheet, TouchableOpacity, ActivityIndicator } from 'react-native'
 import React, { FC } from 'react'
 import { fonts } from '../constants/fonts'
 import { colors } from '../constants/colors'
@@ -25,7 +25,7 @@ const CustomButton: FC<CustomButtonInterface> = ({
   loaderColor = colors.white
 }) => {
   return (
-    <TouchableOpacity style={[styles.container, containerStyle, disabled && {backgroundColor: colors.transparentBlack}]} onPress={onPress} disabled={disabled}>
+    <TouchableOpacity style={[styles.container, containerStyle, (disabled || isLoading) && { backgroundColor: colors.transparentBlack }]} onPress={onPress} disabled={disabled || isLoading}>
 
       {
         isLoading ? (

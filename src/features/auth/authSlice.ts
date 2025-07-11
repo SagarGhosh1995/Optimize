@@ -26,6 +26,8 @@ const authSlice = createSlice({
             state.authdata = action.payload;
         },
         clearAuth(state) {
+            console.log('clear');
+
             state.authdata = null;
         },
     },

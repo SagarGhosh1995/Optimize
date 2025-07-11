@@ -29,5 +29,7 @@ export const icons = {
     truck: require('../../assets/icons/truck.png'),
     right: require('../../assets/icons/right.png'),
     logout: require('../../assets/icons/logout.png'),
-delete: require('../../assets/icons/delete.png'),
+    delete: require('../../assets/icons/delete.png'),
+    cameralinear: require('../../assets/icons/camera-linear.png'),
+    calender: require('../../assets/icons/calender.png'),
 }

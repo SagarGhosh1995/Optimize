@@ -7,15 +7,19 @@ import { setUserData } from "./accountSlice";
 
 
 export const userProfileDetails = async () => {
-    const response = await apiClient.get(endpoints.profiledata);    
+    const response = await apiClient.get(endpoints.profiledata);
     if (response?.success) {
         if (response?.data?.userDetails) {
             genxStore.dispatch(setUserData(response?.data?.userDetails))
         } else {
-            warn(DATA_FORMAT_ERROR+' in userProfileDetails ', response?.data)
+            warn(DATA_FORMAT_ERROR + ' in userProfileDetails ', response?.data)
         }
     } else {
-        warn(API_ERROR,response)
+        warn(API_ERROR, response)
     }
-
 }
+
+export const profileUpdate = async (param: any) => {
+    const response = await apiClient.post(endpoints.updateprofile, param);
+    return response;
+};

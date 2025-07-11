@@ -86,11 +86,11 @@ android {
         versionName "1.0"
         vectorDrawables.useSupportLibrary = true
     }
-    externalNativeBuild {
-        cmake {
-            path "CMakeLists.txt"
-        }
-    }
+    // externalNativeBuild {
+    //     cmake {
+    //         path "CMakeLists.txt"
+    //     }
+    // }
     signingConfigs {
         debug {
             storeFile file('debug.keystore')

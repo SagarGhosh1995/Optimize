@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React, { useEffect, useState } from 'react'
 import { useAppSelector } from '../../../../../globalRedux/useTypedHooks'
@@ -5,14 +6,13 @@ import { colors } from '../../../../../shared/constants/colors'
 import CacheImage from '../../../../../shared/component/CacheImage'
 import { checkImageURL } from '../../../../../shared/utils/imageTools'
 import { images } from '../../../../../shared/constants/images'
-import { useImageAspectRatio } from '../../../../../shared/hooks/useImageAspectRatio'
 import { fonts } from '../../../../../shared/constants/fonts'
 import { icons } from '../../../../../shared/constants/icons'
 import { useNavigation } from '@react-navigation/native'
 
 const ProfileHeader = () => {
 
-  const navigation = useNavigation()
+  const navigation = useNavigation<any>()
   const userdata = useAppSelector((state) => state?.user?.user)
   const [avatar, setAvatar] = useState<string | null | number>(null)
 
@@ -54,7 +54,7 @@ const ProfileHeader = () => {
           <Text style={[styles.text, styles.mail]} numberOfLines={1} allowFontScaling={false}>{userdata?.email ?? 'yourmail@mail.com'}</Text>
         }
       </View>
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('editprofile')}>
         <Image source={icons.penciledit} style={styles.icon} />
       </TouchableOpacity>
     </View>

@@ -11,4 +11,5 @@ export const images = {
       noproduct: require('../../assets/images/no-products.png'),
       emptywishlist: require('../../assets/images/empty-wishlist.png'),
       emptydp: require('../../assets/images/empty-dp.png'),
+      otp: require('../../assets/images/otp.png'),
 }

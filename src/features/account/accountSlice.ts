@@ -6,7 +6,7 @@ export type UserProfileDataType = null | {
     gender: string,
     avatar: string,
     email: string | null,
-    phone: number | string | null,
+    phone: string | null,
     _id: string
 }
 

@@ -96,6 +96,7 @@ const styles = StyleSheet.create({
     backgroundColor: colors.white,
     flexDirection: 'row',
     justifyContent: 'center',
+    zIndex: 1
   },
   leftIconsContainer: {
     left: 0,
@@ -150,13 +151,13 @@ const styles = StyleSheet.create({
     fontSize: 9,
     color: colors.white
   },
-  title:{
+  title: {
     fontFamily: fonts.bold,
     fontSize: 12,
     color: colors.black
   },
-  subTitle:{
-     fontFamily: fonts.regular,
+  subTitle: {
+    fontFamily: fonts.regular,
     fontSize: 10,
     color: colors.black
   }

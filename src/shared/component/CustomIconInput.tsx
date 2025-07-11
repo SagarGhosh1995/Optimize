@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-shadow */
 import React, { JSX, useCallback, useState } from 'react';
 import {
   View,
@@ -16,7 +17,7 @@ import { fonts } from '../constants/fonts';
 
 interface CustomIconInputProps extends Omit<TextInputProps, 'onChangeText'> {
   label?: string;
-  intialValue?: any,
+  initialValue?: any,
   leftIcon?: ImageSourcePropType | null;
   rightIcon?: JSX.Element | null;
   showRightButton?: boolean;
@@ -47,16 +48,17 @@ const CustomIconInput: React.FC<CustomIconInputProps> = ({
   onPressInlineUpdate,
   onPressUpperlineUpdate,
   onTypingComplete,
-  intialValue,
+  initialValue,
   ...rest
 }) => {
-  
-  const [text, setText] = useState(intialValue);
+
+  const [text, setText] = useState(initialValue);
   const isControlled = rest?.value !== undefined;
   const inputValue = isControlled ? rest?.value : text;
 
+
   const handleEndEditing = useCallback(() => {
-    onTypingComplete?.(inputValue  ?? '');
+    onTypingComplete?.(inputValue ?? '');
   }, [inputValue, onTypingComplete]);
 
   return (
@@ -84,7 +86,13 @@ const CustomIconInput: React.FC<CustomIconInputProps> = ({
           value={inputValue}
           style={[styles.input, inputStyle]}
           placeholderTextColor={colors.grey2}
-          onChangeText={setText}
+          onChangeText={(text: string) => {
+            if (isControlled) {
+              onTypingComplete?.(text); // Controlled: only notify parent
+            } else {
+              setText(text);            // Uncontrolled: update local
+            }
+          }}
           onEndEditing={handleEndEditing}
         />
 
@@ -152,7 +160,7 @@ const styles = StyleSheet.create({
     color: colors.black,
     textDecorationLine: 'underline',
   },
-  inputContainer: {    
+  inputContainer: {
     flexDirection: 'row',
     alignItems: 'center',
     borderColor: colors.grey22,

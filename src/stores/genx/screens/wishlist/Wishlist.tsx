@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import { View, StyleSheet, FlatList, ActivityIndicator } from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
 import { colors } from '../../../../shared/constants/colors'
@@ -6,7 +7,7 @@ import ProductCard from '../../component/ProductCard'
 import { getWishlist } from './wishlistApi'
 import { warn } from '../../../../shared/utils/log'
 import EmptyContent from '../../../../shared/component/EmptyContent'
-import { showToast } from '../../../../shared/utils/toast'
+// import { showToast } from '../../../../shared/utils/toast'
 
 const Wishlist = () => {
 
@@ -22,8 +23,7 @@ const Wishlist = () => {
   }, [page])
 
   const getData = () => {
-    let _page = page
-    if(!hasMore) return
+    if (!hasMore) return
     if (!refreshing) {
       setLoading(true);
     }
@@ -32,15 +32,13 @@ const Wishlist = () => {
         if (res?.success) {
           const data = res?.data?.wishlist_data ?? []
           const total = res?.data?.total_data ?? 0
-          if(!refreshing){
+          if (!refreshing) {
             setProducts(prev => [...prev, ...data])
-          }else{
+          } else {
             setProducts(data)
           }
           setTotalData(total)
           setHasMore(data.length > 0)
-          console.log('data => ',data.length);
-          
         }
       })
       .catch((error) => {
@@ -53,7 +51,7 @@ const Wishlist = () => {
 
 
 
-  const renderItem = useCallback(({ item, index }: any) => {
+  const renderItem = useCallback(({ item, index }: { item: any, index: number }) => {
     return (
       <ProductCard
         data={item}
@@ -92,8 +90,8 @@ const Wishlist = () => {
         ItemSeparatorComponent={separator}
         ListEmptyComponent={emptycontent}
         ListFooterComponent={footerComponent}
-        onEndReached={() => setPage(p => p + 1)}
-        onEndReachedThreshold={0.5}
+        // onEndReached={() => setPage(p => p + 1)}
+        // onEndReachedThreshold={0.5}
         refreshing={refreshing}
         onRefresh={() => {
           setRefreshing(true)
