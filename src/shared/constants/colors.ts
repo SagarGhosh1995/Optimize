@@ -79,6 +79,7 @@ export const colors = {
     transparentBlack2: 'rgba(0,0,0,0.3)',
     transparentBlack3: 'rgba(0,0,0,0.4)',
     transparentWhite: 'rgba(255,255,255,0.8)',
+    transparentWhite2: 'rgba(255,255,255,0.2)',
     transparentGrey: 'rgba(73, 80, 87, 0.2)',
 
     green1: '#258864',

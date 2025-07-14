@@ -1,9 +1,9 @@
 import { View, Text, StyleSheet, FlatList, TouchableOpacity } from 'react-native'
 import React, { FC, useCallback, useMemo } from 'react'
-import Heading from '../../../shared/component/Heading'
 import ProductCard from './ProductCard'
-import { fonts } from '../../../shared/constants/fonts'
-import { colors } from '../../../shared/constants/colors'
+import Heading from '../../../../../shared/component/Heading'
+import { fonts } from '../../../../../shared/constants/fonts'
+import { colors } from '../../../../../shared/constants/colors'
 
 interface VerticleProductsInterface {
     products?: Array<any>

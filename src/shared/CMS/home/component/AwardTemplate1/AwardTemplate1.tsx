@@ -3,7 +3,7 @@ import React, { FC, useCallback, useEffect, useState } from 'react'
 import Heading from '../../../../component/Heading'
 import HorizontalAwardRow from './component/HorizontalAwardRow'
 import { getFilteredData, getRandomProduct } from '../../../cmsApi'
-import HorizontalProductRow from '../../../../../stores/genx/component/HorizontalProductRow'
+import HorizontalProductRow from '../../../../../stores/genx/screens/product/component/HorizontalProductRow'
 
 interface AwardTemplate1Interface {
     data?: any

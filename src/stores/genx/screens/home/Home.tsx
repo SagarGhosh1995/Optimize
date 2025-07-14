@@ -9,7 +9,7 @@ import SearchBox from '../../../../shared/component/SearchBox'
 import ParallaxSlider from '../../../../shared/component/ParallaxSlider'
 import { useScaledDimensions } from '../../../../shared/hooks/useScaledDimensions'
 import CMS from '../../../../shared/CMS/CMS'
-import VerticleProducts from '../../component/VerticleProducts'
+import VerticleProducts from '../product/component/VerticleProducts'
 
 const Home = () => {
 

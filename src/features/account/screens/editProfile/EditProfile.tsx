@@ -12,7 +12,7 @@ import CustomCalender from '../../../../shared/component/CustomCalender'
 import CustomButton from '../../../../shared/component/CustomButton'
 import { useNavigation } from '@react-navigation/native'
 import moment from 'moment'
-import { profileUpdate } from '../../accountApi'
+import { profileUpdate, userProfileDetails } from '../../accountApi'
 import { showToast } from '../../../../shared/utils/toast'
 import { warn } from '../../../../shared/utils/log'
 import { useAppSelector } from '../../../../globalRedux/useTypedHooks'
@@ -66,6 +66,7 @@ const EditProfile = () => {
         setLoading(true)
         profileUpdate(param).then(res => {
             if (res.success) {
+                userProfileDetails()
                 showToast('success', res?.message)
             } else {
                 showToast('error', res?.message)
@@ -74,13 +75,11 @@ const EditProfile = () => {
             warn('profile update err => ', err)
         }).finally(() => setLoading(false))
 
-
     }, [name, gender, dob, image])
 
     const handleOpenModal = useCallback((isPhone: boolean) => {
         setIsEditingPhone(isPhone)
         modalRef?.current?.open()
-
     }, [])
 
     const handleCloseModal = useCallback(() => {
@@ -106,7 +105,7 @@ const EditProfile = () => {
                     containerStyle={styles.inputParentcontainerStyle}
                 />
 
-                <View style={[styles.row, styles.mt15]}>
+                <View style={[styles.row,  styles.mt15]}>
                     <CustomDropdown
                         data={genders}
                         label="Gender:"
@@ -125,7 +124,7 @@ const EditProfile = () => {
                     />
                 </View>
 
-                <View style={[styles.row, styles.mt25]}>
+                <View style={[styles.row,styles.justofyBetween, styles.mt25]}>
                     <CustomButton
                         label="Cancel"
                         containerStyle={[styles.offwhiteBtn]}
@@ -194,6 +193,9 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         alignItems: 'center'
     },
+    justofyBetween:{
+        justifyContent: 'space-between'
+    },
     mt15: {
         marginTop: 15
     },
@@ -224,14 +226,14 @@ const styles = StyleSheet.create({
         flex: 0.5,
     },
     offwhiteBtn: {
-        flex: 0.45,
+        flex: 0.5,
         height: 38,
         backgroundColor: colors.offwhite2,
         borderColor: colors.grey25,
         borderWidth: 1
     },
     defaultBtn: {
-        flex: 0.45,
+        flex: 0.5,
         marginLeft: 10,
         height: 38
     },

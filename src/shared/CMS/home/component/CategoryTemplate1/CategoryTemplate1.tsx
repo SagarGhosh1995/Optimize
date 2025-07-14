@@ -5,7 +5,7 @@ import { log } from '../../../../utils/log'
 import Heading from '../../../../component/Heading'
 import { getFilteredData, getRandomProduct } from '../../../cmsApi'
 import CategoryGrid from './component/CategoryGrid'
-import HorizontalProductRow from '../../../../../stores/genx/component/HorizontalProductRow'
+import HorizontalProductRow from '../../../../../stores/genx/screens/product/component/HorizontalProductRow'
 import { colors } from '../../../../constants/colors'
 import { SCREEN_WIDTH } from '../../../../constants/dimensions'
 

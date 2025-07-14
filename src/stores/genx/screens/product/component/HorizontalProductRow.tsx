@@ -2,11 +2,11 @@ import { View, Text, StyleSheet, FlatList, ActivityIndicator, Image } from 'reac
 import React, { FC, useCallback, useEffect, useMemo } from 'react'
 import { FlashList } from '@shopify/flash-list';
 import ProductCard from './ProductCard';
-import { useScaledDimensions } from '../../../shared/hooks/useScaledDimensions';
-import { colors } from '../../../shared/constants/colors';
-import { SCREEN_WIDTH } from '../../../shared/constants/dimensions';
-import { images } from '../../../shared/constants/images';
-import { fonts } from '../../../shared/constants/fonts';
+import { useScaledDimensions } from '../../../../../shared/hooks/useScaledDimensions';
+import { images } from '../../../../../shared/constants/images';
+import { colors } from '../../../../../shared/constants/colors';
+import { SCREEN_WIDTH } from '../../../../../shared/constants/dimensions';
+import { fonts } from '../../../../../shared/constants/fonts';
 
 interface HorizontalProductRowInterface {
     data?: Array<any>,

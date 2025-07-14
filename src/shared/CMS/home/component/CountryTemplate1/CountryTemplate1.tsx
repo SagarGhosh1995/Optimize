@@ -2,7 +2,7 @@ import { View, Text, StyleSheet } from 'react-native'
 import React, { FC, useCallback, useEffect, useState } from 'react'
 import Heading from '../../../../component/Heading'
 import { getFilteredData, getRandomProduct } from '../../../cmsApi'
-import HorizontalProductRow from '../../../../../stores/genx/component/HorizontalProductRow'
+import HorizontalProductRow from '../../../../../stores/genx/screens/product/component/HorizontalProductRow'
 import HorizontalCountryRow from './component/HorizontalCountryRow'
 
 interface CountryTemplate1Interface {

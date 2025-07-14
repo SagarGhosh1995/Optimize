@@ -1,11 +1,11 @@
 import React, { FC, useMemo } from 'react';
 import { View, Text, StyleSheet, Pressable, Image } from 'react-native';
-import { useScaledDimensions } from '../../../shared/hooks/useScaledDimensions';
-import CacheImage from '../../../shared/component/CacheImage';
-import { useImageAspectRatio } from '../../../shared/hooks/useImageAspectRatio';
-import { colors } from '../../../shared/constants/colors';
-import { images } from '../../../shared/constants/images';
-import { fonts } from '../../../shared/constants/fonts';
+import { useScaledDimensions } from '../../../../../shared/hooks/useScaledDimensions';
+import { useImageAspectRatio } from '../../../../../shared/hooks/useImageAspectRatio';
+import CacheImage from '../../../../../shared/component/CacheImage';
+import { images } from '../../../../../shared/constants/images';
+import { colors } from '../../../../../shared/constants/colors';
+import { fonts } from '../../../../../shared/constants/fonts';
 
 interface ProductCardInterface {
   data?: any;

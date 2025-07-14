@@ -3,11 +3,10 @@ import { View, StyleSheet, FlatList, ActivityIndicator } from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
 import { colors } from '../../../../shared/constants/colors'
 import AppHeader from '../../../../shared/component/AppHeader'
-import ProductCard from '../../component/ProductCard'
+import ProductCard from '../product/component/ProductCard'
 import { getWishlist } from './wishlistApi'
 import { warn } from '../../../../shared/utils/log'
 import EmptyContent from '../../../../shared/component/EmptyContent'
-// import { showToast } from '../../../../shared/utils/toast'
 
 const Wishlist = () => {
 
@@ -23,10 +22,13 @@ const Wishlist = () => {
   }, [page])
 
   const getData = () => {
-    if (!hasMore) return
+    if (!hasMore) {
+      return
+    }
     if (!refreshing) {
       setLoading(true);
     }
+    
     getWishlist(page)
       .then((res) => {
         if (res?.success) {
@@ -38,13 +40,14 @@ const Wishlist = () => {
             setProducts(data)
           }
           setTotalData(total)
-          setHasMore(data.length > 0)
+          // setHasMore(data?.length > 0)
+          setHasMore(false)
         }
       })
       .catch((error) => {
         warn(error);
       }).finally(() => {
-        setLoading(false)
+        setLoading(false) 
         setRefreshing(false)
       })
   };
@@ -91,11 +94,15 @@ const Wishlist = () => {
         ListEmptyComponent={emptycontent}
         ListFooterComponent={footerComponent}
         // onEndReached={() => setPage(p => p + 1)}
-        // onEndReachedThreshold={0.5}
+        // onEndReachedThreshold={0.5}        
         refreshing={refreshing}
         onRefresh={() => {
-          setRefreshing(true)
-          setPage(1)
+          if(hasMore){
+            setRefreshing(true)
+            setPage(1)
+          }else{
+            return
+          }
         }}
       />
     </View>

@@ -6,6 +6,7 @@ import Login from '../../../features/auth/screens/Login';
 import useAuthenticated from '../../../shared/hooks/useAuthenticated';
 import Logout from '../../../features/auth/screens/Logout';
 import EditProfile from '../../../features/account/screens/editProfile/EditProfile';
+import Orders from '../../../stores/genx/screens/orders/Orders';
 
 const Stack = createNativeStackNavigator()
 
@@ -25,6 +26,7 @@ const GenxNavigator = () => {
         <>
           <Stack.Screen name="genxtabs" component={TabNavigator} />
           <Stack.Screen name='editprofile' component={EditProfile} />
+          <Stack.Screen name="orders" component={Orders} />
           <Stack.Screen name='logout' component={Logout} />
         </>
       )}

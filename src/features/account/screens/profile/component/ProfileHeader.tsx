@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
-import React, { useEffect, useState } from 'react'
+import React, { useCallback, useEffect, useState } from 'react'
 import { useAppSelector } from '../../../../../globalRedux/useTypedHooks'
 import { colors } from '../../../../../shared/constants/colors'
 import CacheImage from '../../../../../shared/component/CacheImage'
@@ -9,10 +9,12 @@ import { images } from '../../../../../shared/constants/images'
 import { fonts } from '../../../../../shared/constants/fonts'
 import { icons } from '../../../../../shared/constants/icons'
 import { useNavigation } from '@react-navigation/native'
+import FullScapeImageViewModal from './FullScapeImageViewModal'
 
 const ProfileHeader = () => {
 
   const navigation = useNavigation<any>()
+  const [openImage, setOpenImage] = useState(false)
   const userdata = useAppSelector((state) => state?.user?.user)
   const [avatar, setAvatar] = useState<string | null | number>(null)
 
@@ -29,9 +31,13 @@ const ProfileHeader = () => {
     }
   }
 
+  const handleImagePress = useCallback(() => {
+    setOpenImage(!openImage)
+  },[openImage])
+
   return (
     <View style={styles.container}>
-      <TouchableOpacity disabled={typeof avatar === 'number'}>
+      <TouchableOpacity disabled={typeof avatar === 'number'} onPress={handleImagePress}>
         {
           typeof avatar === 'string' ?
             <CacheImage
@@ -57,6 +63,7 @@ const ProfileHeader = () => {
       <TouchableOpacity style={styles.button} onPress={() => navigation.navigate('editprofile')}>
         <Image source={icons.penciledit} style={styles.icon} />
       </TouchableOpacity>
+      <FullScapeImageViewModal uri={avatar} isModalVisible={openImage} toggleModal={handleImagePress} />
     </View>
   )
 }
