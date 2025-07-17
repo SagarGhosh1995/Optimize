@@ -60,6 +60,9 @@ const HorizontalBrandRow: FC<HorizontalBrandRowInterface> = ({
             style={styles.flatlistStyle}
             contentContainerStyle={styles.container}
             ItemSeparatorComponent={separator}
+            initialNumToRender={5}
+            maxToRenderPerBatch={4}
+            windowSize={4}
             getItemLayout={(data, index) => ({
                 length: ITEM_WIDTH,
                 offset: ITEM_WIDTH * index,

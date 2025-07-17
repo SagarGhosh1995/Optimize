@@ -10,6 +10,7 @@ export const images = {
       productcardbellicon: require('../../assets/images/product-card-bellicon.png'),
       noproduct: require('../../assets/images/no-products.png'),
       emptywishlist: require('../../assets/images/empty-wishlist.png'),
+      noaddress: require('../../assets/images/no-address.png'),
       emptydp: require('../../assets/images/empty-dp.png'),
       otp: require('../../assets/images/otp.png'),
 }

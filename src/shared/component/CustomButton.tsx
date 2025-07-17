@@ -6,7 +6,7 @@ import { colors } from '../constants/colors'
 interface CustomButtonInterface {
   containerStyle?: any,
   label?: string,
-  headingStyle?: any,
+  labelStyle?: any,
   onPress?: () => void,
   icon?: any,
   disabled?: boolean,
@@ -16,7 +16,7 @@ interface CustomButtonInterface {
 
 const CustomButton: FC<CustomButtonInterface> = ({
   containerStyle,
-  headingStyle,
+  labelStyle,
   label,
   onPress,
   icon,
@@ -37,7 +37,7 @@ const CustomButton: FC<CustomButtonInterface> = ({
               {
                 icon && icon
               }
-              <Text allowFontScaling={false} style={[styles.heading, headingStyle]}>{label}</Text>
+              <Text allowFontScaling={false} style={[styles.label, labelStyle]}>{label}</Text>
             </>
           )
       }
@@ -56,9 +56,10 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 8
   },
-  heading: {
+  label: {
     fontSize: 12,
     fontFamily: fonts.regular,
-    color: colors.white
+    color: colors.white,
+    textAlign: 'center'
   }
 })

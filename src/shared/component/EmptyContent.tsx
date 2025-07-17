@@ -1,18 +1,18 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
 import React, { FC } from 'react'
 import { images } from '../constants/images'
-import { SCREEN_HEIGHT, SCREEN_WIDTH } from '../constants/dimensions'
 import { fonts } from '../constants/fonts'
 import { colors } from '../constants/colors'
+import CustomButton from './CustomButton'
 
 interface EmptyContentInterface {
-    type?: 'wishlist'
+    type?: 'wishlist' | 'address'
 }
 
 const EmptyContent: FC<EmptyContentInterface> = ({
     type
 }) => {
-    // const 
+
 
     if (type === 'wishlist') {
         return (
@@ -29,21 +29,38 @@ const EmptyContent: FC<EmptyContentInterface> = ({
             </View>
         )
     }
+
+    if (type === 'address') {
+        return (
+            <View style={[styles.container, styles.flex1, styles.itemCenter, styles.justifyCenter]}>
+                <Image
+                    source={images.noaddress}
+                    style={styles.image}
+                    resizeMode='contain'
+                />
+                <Text style={styles.heading} allowFontScaling={false}>No Address Found</Text>
+                <Text style={styles.text} allowFontScaling={false}>
+                    Add a delivery address to proceed with your order.
+                </Text>
+                <CustomButton label='Add New Address' containerStyle={styles.addressBtn} />
+            </View>
+        )
+    }
 }
 
 export default React.memo(EmptyContent)
 
 const styles = StyleSheet.create({
     container: {
-       paddingHorizontal: 15
+        paddingHorizontal: 15
     },
-    flex1:{
+    flex1: {
         flex: 1,
     },
-    itemCenter:{
+    itemCenter: {
         alignItems: 'center'
     },
-    justifyCenter:{
+    justifyCenter: {
         justifyContent: 'center'
     },
     image: {
@@ -65,4 +82,8 @@ const styles = StyleSheet.create({
         textAlign: 'center',
         marginTop: 6,
     },
+    addressBtn: {
+        width: '40%',
+        marginTop: 20
+    }
 })

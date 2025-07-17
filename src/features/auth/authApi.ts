@@ -2,6 +2,7 @@ import apiClient from "../../api/client";
 import { endpoints } from "../../api/endpoints";
 import { StoreIds } from "../../globalContext/StoreContext";
 import { genxStore } from "../../stores/genx/redux/store";
+import { clearAddress } from "../../stores/genx/screens/address/addressSlice";
 import { clearWishlistIds } from "../../stores/genx/screens/wishlist/wishlistSlice";
 import { clearAccount } from "../account/accountSlice";
 import { clearAuth } from "./authSlice";
@@ -20,5 +21,6 @@ export const logout = async (storeId: StoreIds) => {
         genxStore.dispatch(clearAuth())
         genxStore.dispatch(clearAccount())
         genxStore.dispatch(clearWishlistIds())
+        genxStore.dispatch(clearAddress())
     }
 }

@@ -1,3 +1,4 @@
+/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable react-hooks/exhaustive-deps */
 import { View, StyleSheet, FlatList, ActivityIndicator } from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
@@ -28,7 +29,7 @@ const Wishlist = () => {
     if (!refreshing) {
       setLoading(true);
     }
-    
+
     getWishlist(page)
       .then((res) => {
         if (res?.success) {
@@ -47,7 +48,7 @@ const Wishlist = () => {
       .catch((error) => {
         warn(error);
       }).finally(() => {
-        setLoading(false) 
+        setLoading(false)
         setRefreshing(false)
       })
   };
@@ -88,6 +89,9 @@ const Wishlist = () => {
         keyExtractor={(item: any, index) => item?.product_id + index + ""}
         renderItem={renderItem}
         numColumns={2}
+        initialNumToRender={6}
+        maxToRenderPerBatch={4}
+        windowSize={4}
         contentContainerStyle={styles.contentContainerStyle}
         columnWrapperStyle={styles.columnWrapperStyle}
         ItemSeparatorComponent={separator}
@@ -97,10 +101,10 @@ const Wishlist = () => {
         // onEndReachedThreshold={0.5}        
         refreshing={refreshing}
         onRefresh={() => {
-          if(hasMore){
+          if (hasMore) {
             setRefreshing(true)
             setPage(1)
-          }else{
+          } else {
             return
           }
         }}

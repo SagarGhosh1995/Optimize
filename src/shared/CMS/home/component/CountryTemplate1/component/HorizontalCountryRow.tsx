@@ -65,6 +65,9 @@ const HorizontalCountryRow: FC<HorizontalCountryRowInterface> = ({
             style={styles.flatlistStyle}
             contentContainerStyle={styles.container}
             ItemSeparatorComponent={separator}
+            initialNumToRender={5}
+            maxToRenderPerBatch={4}
+            windowSize={4}
             getItemLayout={(data, index) => ({
                 length: ITEM_HEIGHT,
                 offset: ITEM_HEIGHT * index,

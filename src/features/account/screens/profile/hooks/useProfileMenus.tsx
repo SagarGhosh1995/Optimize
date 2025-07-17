@@ -1,3 +1,4 @@
+/* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
 import useAuthenticated from '../../../../../shared/hooks/useAuthenticated';
 import { icons } from '../../../../../shared/constants/icons';
@@ -5,7 +6,7 @@ import { useNavigation } from '@react-navigation/native';
 
 export const useProfileMenus = () => {
     const isLoggedIn = useAuthenticated();   // ✅ hook used legally here
-    const {navigate} = useNavigation<any>()
+    const { navigate } = useNavigation<any>()
 
     const menus = React.useMemo(
         () => [
@@ -28,13 +29,13 @@ export const useProfileMenus = () => {
                         heading: 'Wishlist',
                         subtitle: 'Represents saving favourites.',
                         icon: icons.heart,
-                        onPress: () => isLoggedIn ? navigate('wishlist') :null
+                        onPress: () => isLoggedIn ? navigate('wishlist') : null
                     },
                     {
                         heading: 'Address',
                         subtitle: 'View your saved addresses.',
                         icon: icons.location,
-                        // onPress: () => isLoggedIn() ? navigate('address') : _openAuthModal()
+                        onPress: () => isLoggedIn ? navigate('address') : null
                     },
                     {
                         heading: 'History',

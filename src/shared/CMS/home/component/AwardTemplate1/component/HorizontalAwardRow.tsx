@@ -58,7 +58,10 @@ const HorizontalAwardRow: FC<HorizontalAwardRowInterface> = ({
             style={styles.flatlistStyle}
             contentContainerStyle={styles.container}
             ItemSeparatorComponent={separator}
-            getItemLayout={(data, index) => ({
+            initialNumToRender={3}
+            maxToRenderPerBatch={4}
+            windowSize={4}
+            getItemLayout={(_, index) => ({
                 length: ITEM_WIDTH,
                 offset: ITEM_WIDTH * index,
                 index,

@@ -1,4 +1,4 @@
-import { View, Text, StyleSheet, ScrollView } from 'react-native'
+import { View, StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
 import AppHeader from '../../../../shared/component/AppHeader'
 import { colors } from '../../../../shared/constants/colors'
@@ -21,11 +21,11 @@ const Profile = () => {
 export default Profile
 
 const styles = StyleSheet.create({
-  container:{
+  container: {
     flex: 1,
     backgroundColor: colors.bgcolor
   },
-  content:{
+  content: {
     flexGrow: 1,
     paddingHorizontal: 15,
     paddingVertical: 15,
