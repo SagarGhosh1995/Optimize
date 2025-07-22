@@ -11,5 +11,6 @@ export const endpoints = {
     updateprofile: 'v1/auth/b2c/me/edit',
     orderlist: 'v1/orders/get-order-list',
     addresslist: "v1/u-address/get-all-add/b2c",
-    deleteaddress: 'v1/u-address/delete-address/b2c/'
+    deleteaddress: 'v1/u-address/delete-address/b2c/',
+    defaultaddress: 'v1/u-address/default-address/b2c/'
 }

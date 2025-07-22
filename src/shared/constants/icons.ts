@@ -47,4 +47,7 @@ export const icons = {
     radioactive: require('../../assets/icons/radio-active.png'),
     trash: require('../../assets/icons/trash.png'),
     pencilfill: require('../../assets/icons/pencil-fill.png'),
+    phonefill: require('../../assets/icons/phone-fill.png'),
+    hash: require('../../assets/icons/hash.png'),
+    locationfill: require('../../assets/icons/location-fill.png'),
 }

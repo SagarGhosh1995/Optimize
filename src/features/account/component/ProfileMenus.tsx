@@ -10,14 +10,13 @@ import {
     ListRenderItem,
 } from 'react-native';
 import { useNavigation } from '@react-navigation/native';
-import { colors } from '../../../../../shared/constants/colors';
-import { fonts } from '../../../../../shared/constants/fonts';
-import { getCurrentAppVersion } from '../../../../../shared/constants/appversion';
-import { icons } from '../../../../../shared/constants/icons';
-// import { menus } from '../../../../../shared/constants/profilemenu';
-import useAuthenticated from '../../../../../shared/hooks/useAuthenticated';
-import { isIOS } from '../../../../../shared/constants/dimensions';
+import { icons } from '../../../shared/constants/icons';
 import { useProfileMenus } from '../hooks/useProfileMenus';
+import useAuthenticated from '../../../shared/hooks/useAuthenticated';
+import { isIOS } from '../../../shared/constants/dimensions';
+import { getCurrentAppVersion } from '../../../shared/constants/appversion';
+import { fonts } from '../../../shared/constants/fonts';
+import { colors } from '../../../shared/constants/colors';
 
 const MenuItem = memo(({ item }: { item: any }) => (
     <TouchableOpacity style={styles.menuCard} onPress={item.onPress}>

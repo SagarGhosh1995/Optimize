@@ -1,9 +1,9 @@
 import { View, StyleSheet, ScrollView } from 'react-native'
 import React from 'react'
-import AppHeader from '../../../../shared/component/AppHeader'
-import { colors } from '../../../../shared/constants/colors'
-import ProfileHeader from './component/ProfileHeader'
-import ProfileMenus from './component/ProfileMenus'
+import AppHeader from '../../../shared/component/AppHeader'
+import ProfileHeader from '../component/ProfileHeader'
+import ProfileMenus from '../component/ProfileMenus'
+import { colors } from '../../../shared/constants/colors'
 
 
 const Profile = () => {

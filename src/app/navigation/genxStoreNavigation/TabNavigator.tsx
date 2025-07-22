@@ -11,7 +11,7 @@ import { images } from '../../../shared/constants/images';
 import { fonts } from '../../../shared/constants/fonts';
 import { colors } from '../../../shared/constants/colors';
 import { isIOS } from '../../../shared/constants/dimensions';
-import Profile from '../../../features/account/screens/profile/Profile';
+import Profile from '../../../features/account/screens/Profile';
 
 const Tab = createBottomTabNavigator();
 

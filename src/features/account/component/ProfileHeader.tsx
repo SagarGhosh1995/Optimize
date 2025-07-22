@@ -1,15 +1,15 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { View, Text, StyleSheet, Image, TouchableOpacity } from 'react-native'
 import React, { useCallback, useEffect, useState } from 'react'
-import { useAppSelector } from '../../../../../globalRedux/useTypedHooks'
-import { colors } from '../../../../../shared/constants/colors'
-import CacheImage from '../../../../../shared/component/CacheImage'
-import { checkImageURL } from '../../../../../shared/utils/imageTools'
-import { images } from '../../../../../shared/constants/images'
-import { fonts } from '../../../../../shared/constants/fonts'
-import { icons } from '../../../../../shared/constants/icons'
 import { useNavigation } from '@react-navigation/native'
 import FullScapeImageViewModal from './FullScapeImageViewModal'
+import { useAppSelector } from '../../../globalRedux/useTypedHooks'
+import { checkImageURL } from '../../../shared/utils/imageTools'
+import { images } from '../../../shared/constants/images'
+import CacheImage from '../../../shared/component/CacheImage'
+import { icons } from '../../../shared/constants/icons'
+import { colors } from '../../../shared/constants/colors'
+import { fonts } from '../../../shared/constants/fonts'
 
 const ProfileHeader = () => {
 

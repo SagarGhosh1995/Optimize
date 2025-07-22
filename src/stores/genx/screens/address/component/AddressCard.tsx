@@ -5,7 +5,8 @@ import { colors } from '../../../../../shared/constants/colors';
 import { icons } from '../../../../../shared/constants/icons';
 import { fonts } from '../../../../../shared/constants/fonts';
 import CustomButton from '../../../../../shared/component/CustomButton';
-import { deleteUserAddress } from '../addressApi';
+import { deleteUserAddress, defaultAddress } from '../addressApi';
+import { useNavigation } from '@react-navigation/native';
 
 interface AddressCardInterface {
     data?: {
@@ -22,12 +23,25 @@ const AddressCard: FC<AddressCardInterface> = ({
     showEdit = false,
     onSelect
 }) => {
+
+    const navigation = useNavigation<any>()
     const [delLoading, setDelLoading] = useState(false)
 
     const onDelete = useCallback(() => {
         setDelLoading(true)
         deleteUserAddress(data?._id).finally(() => {
         }).finally(() => setDelLoading(false))
+    }, [])
+
+    const onDeliveryHere = useCallback(() => {
+        defaultAddress(data?._id).then(res => {
+            navigation?.goBack()
+        }).catch(err => {
+        })
+    }, [])
+
+    const onPressEdit = useCallback(() => {
+        navigation.navigate('editaddress', { isEditingAddress: true, editableAddress: data })
     }, [])
 
     if (!data) return null
@@ -45,7 +59,7 @@ const AddressCard: FC<AddressCardInterface> = ({
                 </View>
                 {
                     showEdit &&
-                    <TouchableOpacity>
+                    <TouchableOpacity onPress={onPressEdit}>
                         <Image source={icons.pencilfill} style={styles.pencilIcon} resizeMode='contain' />
                     </TouchableOpacity>
                 }
@@ -62,6 +76,7 @@ const AddressCard: FC<AddressCardInterface> = ({
                     <CustomButton
                         label='Delivery Here'
                         containerStyle={styles.deliveryBtn}
+                        onPress={onDeliveryHere}
                     />
                     <TouchableOpacity style={styles.deleteBtn} onPress={onDelete} disabled={delLoading} >
                         {

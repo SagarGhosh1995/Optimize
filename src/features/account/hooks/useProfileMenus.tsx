@@ -1,11 +1,11 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import React from 'react';
-import useAuthenticated from '../../../../../shared/hooks/useAuthenticated';
-import { icons } from '../../../../../shared/constants/icons';
 import { useNavigation } from '@react-navigation/native';
+import { icons } from '../../../shared/constants/icons';
+import useAuthenticated from '../../../shared/hooks/useAuthenticated';
 
 export const useProfileMenus = () => {
-    const isLoggedIn = useAuthenticated();   // ✅ hook used legally here
+    const isLoggedIn = useAuthenticated();
     const { navigate } = useNavigation<any>()
 
     const menus = React.useMemo(

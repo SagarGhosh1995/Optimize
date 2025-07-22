@@ -18,6 +18,9 @@ const addressSlice = createSlice({
         setAddress: (state, action: PayloadAction<addressSliceInterface['address']>) => {
             state.address = action.payload; // replaces the whole array
         },
+        setDefaultAddress: (state, action: PayloadAction<addressSliceInterface['defaultAddress']>) => {
+            state.defaultAddress = action.payload; // replaces the whole array
+        },
         addAddress: (state, action: PayloadAction<{ _id: string;[key: string]: any }>) => {
             const exists = state.address.some(addr => addr._id === action.payload?._id);
             if (!exists) {
@@ -34,5 +37,5 @@ const addressSlice = createSlice({
     },
 });
 
-export const { setAddress, addAddress, deleteAddress, clearAddress } = addressSlice.actions;
+export const { setAddress, addAddress, deleteAddress, clearAddress, setDefaultAddress } = addressSlice.actions;
 export default addressSlice.reducer;

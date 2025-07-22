@@ -1,5 +1,5 @@
 /* eslint-disable @typescript-eslint/no-shadow */
-import React, { JSX, useCallback, useState } from 'react';
+import React, { JSX, useCallback, useEffect, useState } from 'react';
 import {
   View,
   Text,
@@ -56,6 +56,9 @@ const CustomIconInput: React.FC<CustomIconInputProps> = ({
   const isControlled = rest?.value !== undefined;
   const inputValue = isControlled ? rest?.value : text;
 
+  // useEffect(() => {
+  //   console.log('input render');    
+  // },[])
 
   const handleEndEditing = useCallback(() => {
     onTypingComplete?.(inputValue ?? '');
@@ -179,7 +182,7 @@ const styles = StyleSheet.create({
   },
   iconWrapper: {
     paddingHorizontal: 10,
-    // backgroundColor: colors.grey12,
+    backgroundColor: colors.grey12,
     justifyContent: 'center',
     alignItems: 'center',
   },

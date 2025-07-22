@@ -1,9 +1,10 @@
 import { View, Text, StyleSheet } from 'react-native'
 import React, { FC } from 'react'
 import Modal from 'react-native-modal';
-import { colors } from '../../../../../shared/constants/colors';
-import CacheImage from '../../../../../shared/component/CacheImage';
-import { useImageAspectRatio } from '../../../../../shared/hooks/useImageAspectRatio';
+import CacheImage from '../../../shared/component/CacheImage';
+import { useImageAspectRatio } from '../../../shared/hooks/useImageAspectRatio';
+import { colors } from '../../../shared/constants/colors';
+
 
 interface FullScapeImageViewModalInterface {
     isModalVisible?: boolean,

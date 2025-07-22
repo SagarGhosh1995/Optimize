@@ -73,7 +73,7 @@ const Address = () => {
     const renderItem = useCallback(({ item, index }: { item: any, index: Number }) => {
         return <AddressCard
             data={item}
-            isSelected={selectedId === item._id}
+            isSelected={ item?.isDefault ?? selectedId === item._id}
             onSelect={() => setSelectedId(item._id)}
             showEdit
         />

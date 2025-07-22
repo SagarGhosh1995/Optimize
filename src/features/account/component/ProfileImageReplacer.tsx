@@ -2,12 +2,12 @@
 
 import { View, StyleSheet, Image, TouchableOpacity, ActivityIndicator } from 'react-native'
 import React, { FC, useEffect, useState } from 'react'
-import CacheImage from '../../../../../shared/component/CacheImage'
-import { icons } from '../../../../../shared/constants/icons'
 import ImagePicker from 'react-native-image-crop-picker';
-import { warn } from '../../../../../shared/utils/log'
-import useProfileImageUrlChecker from '../../../../../shared/hooks/useProfileImageUrlChecker'
-import { colors } from '../../../../../shared/constants/colors'
+import useProfileImageUrlChecker from '../../../shared/hooks/useProfileImageUrlChecker';
+import { warn } from '../../../shared/utils/log';
+import CacheImage from '../../../shared/component/CacheImage';
+import { icons } from '../../../shared/constants/icons';
+import { colors } from '../../../shared/constants/colors';
 
 interface ProfileImageReplacerInterface {
     onChange?: (uri: string | null) => void

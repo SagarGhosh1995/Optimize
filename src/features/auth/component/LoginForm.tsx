@@ -130,7 +130,7 @@ const LoginForm: FC<LoginFormInterface> = ({
                 ) : (
                     <CustomIconInput
                         placeholder="Enter Email Id"
-                        intialValue={contact}
+                        initialValue={contact}
                         keyboardType="email-address"
                         onTypingComplete={handleEmailChange}
                         inputContainerStyle={styles.emailInputContainer}
@@ -156,7 +156,7 @@ const LoginForm: FC<LoginFormInterface> = ({
                 disabled={loading}
                 label={otpSend ? 'Confirm' : 'Login'}
                 containerStyle={styles.button}
-                headingStyle={styles.buttonText}
+                labelStyle={styles.buttonText}
                 onPress={handleSubmit}
             />
 

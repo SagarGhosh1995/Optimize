@@ -1,23 +1,24 @@
 import { View, Text, StyleSheet, Image } from 'react-native'
 import React, { useCallback, useEffect, useRef, useState } from 'react'
-import { colors } from '../../../../shared/constants/colors'
-import AppHeader from '../../../../shared/component/AppHeader'
+import AppHeader from '../../../shared/component/AppHeader'
 import { KeyboardAwareScrollView } from 'react-native-keyboard-aware-scroll-view'
-import ProfileImageReplacer from './component/ProfileImageReplacer'
-import { fonts } from '../../../../shared/constants/fonts'
-import CustomIconInput from '../../../../shared/component/CustomIconInput'
-import CustomDropdown from '../../../../shared/component/CustomDropdown'
-import { genders } from '../../../../shared/constants/genders'
-import CustomCalender from '../../../../shared/component/CustomCalender'
-import CustomButton from '../../../../shared/component/CustomButton'
+import ProfileImageReplacer from '../component/ProfileImageReplacer'
+import CustomIconInput from '../../../shared/component/CustomIconInput'
+import CustomDropdown from '../../../shared/component/CustomDropdown'
+import CustomCalender from '../../../shared/component/CustomCalender'
+import CustomButton from '../../../shared/component/CustomButton'
 import { useNavigation } from '@react-navigation/native'
 import moment from 'moment'
-import { profileUpdate, userProfileDetails } from '../../accountApi'
-import { showToast } from '../../../../shared/utils/toast'
-import { warn } from '../../../../shared/utils/log'
-import { useAppSelector } from '../../../../globalRedux/useTypedHooks'
-import { icons } from '../../../../shared/constants/icons'
-import UpdatePhoneEmailModal, { UpdatePhoneEmailModalRef } from './component/UpdatePhoneEmailModal'
+import UpdatePhoneEmailModal, { UpdatePhoneEmailModalRef } from '../component/UpdatePhoneEmailModal'
+import { useAppSelector } from '../../../globalRedux/useTypedHooks'
+import { profileUpdate, userProfileDetails } from '../accountApi'
+import { showToast } from '../../../shared/utils/toast'
+import { warn } from '../../../shared/utils/log'
+import { genders } from '../../../shared/constants/genders'
+import { colors } from '../../../shared/constants/colors'
+import { icons } from '../../../shared/constants/icons'
+import { fonts } from '../../../shared/constants/fonts'
+
 
 const EditProfile = () => {
 
@@ -128,7 +129,7 @@ const EditProfile = () => {
                     <CustomButton
                         label="Cancel"
                         containerStyle={[styles.offwhiteBtn]}
-                        headingStyle={{ color: colors.black }}
+                        labelStyle={{ color: colors.black }}
                         onPress={() => navigation.goBack()}
                     />
                     <CustomButton

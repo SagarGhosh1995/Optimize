@@ -32,7 +32,7 @@ const Home = () => {
         if (Array.isArray(slides) && !!slides.length) {
           setBanner(slides);
         } else {
-          warn('Invalid banner format: NOT_AN_ARRAY');
+          warn('Invalid banner format: NOT_AN_ARRAY', slides);
         }
       } else {
         warn('Banner API error:', bannerRes.reason);
@@ -43,7 +43,7 @@ const Home = () => {
         if (Array.isArray(allcms)) {
           setCms(allcms);
         } else {
-          warn('Invalid CMS format: NOT_AN_ARRAY');
+          warn('Invalid CMS format: NOT_AN_ARRAY', allcms);
         }
       } else {
         warn('CMS API error:', cmsRes.reason);
@@ -54,7 +54,7 @@ const Home = () => {
         if (Array.isArray(allproducts) && !!allproducts.length) {
           setProducts(allproducts);
         } else {
-          warn('Invalid Product format: NOT_AN_ARRAY');
+          warn('Invalid Product format: NOT_AN_ARRAY', allproducts);
         }
       }
     } catch (error) {

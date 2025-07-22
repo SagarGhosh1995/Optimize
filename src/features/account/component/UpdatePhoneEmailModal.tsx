@@ -8,12 +8,12 @@ import React, {
 } from 'react';
 import { View, StyleSheet, Image, Text } from 'react-native';
 import RBSheet from 'react-native-raw-bottom-sheet';
-import { SCREEN_HEIGHT } from '../../../../../shared/constants/dimensions';
-import { colors } from '../../../../../shared/constants/colors';
-import { images } from '../../../../../shared/constants/images';
-import { fonts } from '../../../../../shared/constants/fonts';
-import InternationalPhoneInput from '../../../../auth/component/InternationalPhoneInput';
-import CustomButton from '../../../../../shared/component/CustomButton';
+import { SCREEN_HEIGHT } from '../../../shared/constants/dimensions';
+import { images } from '../../../shared/constants/images';
+import InternationalPhoneInput from '../../auth/component/InternationalPhoneInput';
+import CustomButton from '../../../shared/component/CustomButton';
+import { colors } from '../../../shared/constants/colors';
+import { fonts } from '../../../shared/constants/fonts';
 
 export interface UpdatePhoneEmailModalRef {
     open: () => void;
@@ -94,7 +94,7 @@ const UpdatePhoneEmailModal = forwardRef<UpdatePhoneEmailModalRef, UpdatePhoneEm
                         <CustomButton
                             label="Cancel"
                             containerStyle={[styles.offwhiteBtn]}
-                            headingStyle={{ color: colors.black }}
+                            labelStyle={{ color: colors.black }}
                             onPress={onClose}
                         />
                         <CustomButton

@@ -153,7 +153,7 @@ const styles = StyleSheet.create({
   },
   title: {
     fontFamily: fonts.bold,
-    fontSize: 12,
+    fontSize: 14,
     color: colors.black
   },
   subTitle: {

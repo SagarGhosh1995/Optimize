@@ -4,6 +4,7 @@ import { images } from '../constants/images'
 import { fonts } from '../constants/fonts'
 import { colors } from '../constants/colors'
 import CustomButton from './CustomButton'
+import { useNavigation } from '@react-navigation/native'
 
 interface EmptyContentInterface {
     type?: 'wishlist' | 'address'
@@ -13,6 +14,7 @@ const EmptyContent: FC<EmptyContentInterface> = ({
     type
 }) => {
 
+    const navigation = useNavigation<any>()
 
     if (type === 'wishlist') {
         return (
@@ -42,7 +44,7 @@ const EmptyContent: FC<EmptyContentInterface> = ({
                 <Text style={styles.text} allowFontScaling={false}>
                     Add a delivery address to proceed with your order.
                 </Text>
-                <CustomButton label='Add New Address' containerStyle={styles.addressBtn} />
+                <CustomButton label='Add New Address' containerStyle={styles.addressBtn} onPress={()=> navigation.navigate('editaddress')} />
             </View>
         )
     }

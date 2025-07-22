@@ -47,7 +47,9 @@ const Orders = () => {
 
                 const response = await getOrders(selectedFilterSlug, isLoadMore ? page : 1)
                 if (response?.success) {
-                    const data = response?.data?.response
+                    const data = response?.data
+                    // console.log(data);
+                    
                     if (isLoadMore) {
                         setOrders(prev => [...prev, ...data])
                     } else {
